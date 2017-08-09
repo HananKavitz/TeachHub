@@ -3,6 +3,7 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var path = require('path');
 var fs = require('fs');
+var interests = require('../database/Interests');
 //var mongoose = require('mongoose');
 
 var hostname = 'localhost';
@@ -19,10 +20,18 @@ app.use(express.static(path.join(__dirname, '../../build')));
 
 app.get('/interests', function(req,res,next) {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end(JSON.stringify(["Math", "Science","Bible"])
+    res.end(JSON.stringify(interests.interests)
     )
 
 });
+
+app.get('/ImTeaching', function(req,res,next) {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end(JSON.stringify(interests.interests)
+    )
+
+});
+
 // app.put('/parentStories', function(req,res,next) {
 //     //res.writeHead(200, { 'Content-Type': 'text/plain' });
 //     console.log(req);

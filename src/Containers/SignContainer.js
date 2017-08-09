@@ -17,13 +17,27 @@ class SignContainer extends Component {
             .catch(function (error) {
                 console.log(error);
             });
+
+        axios.get('/ImTeaching')
+            .then(function (response) {
+                this.setState({"teaching":  response.data});
+            }.bind(this))
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        this.fileChooserCallback = this.fileChooserCallback.bind(this);
     }
 
+    fileChooserCallback(){
+        let input = document.querySelector('input');
+    };
 
-
+    
     render() {
         return (
-            <Sign isSetImage={this.state.isSetImage} interests = {this.state.interests}/>
+            <Sign isSetImage={this.state.isSetImage} interests = {this.state.interests}
+                  ImTeaching = {this.state.teaching} fileChooserCallback = {this.fileChooserCallback}/>
         )
     }
 }

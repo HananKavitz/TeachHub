@@ -23,7 +23,8 @@ class Sign extends Component {
                 <Image src="./static/images/avatar_placeholder-9a2f53db6270aa02b5ae2c5af1ffc72b.svg" responsive/>
                 <FormGroup controlId="formControlsFile">
                     <ControlLabel>{"Your pretty face"}</ControlLabel>
-                    <FormControl type="file"/>
+                    <FormControl type="file" accept=".jpg, .jpeg, .png"
+                                 id="image_uploads"/>
                 </FormGroup>
 
             </div>);
@@ -127,7 +128,21 @@ class Sign extends Component {
                 <FormControl componentClass="textarea" placeholder="I am..."/>
             </FormGroup>
         );
+        // currently I'm teaching
+        let ImTeachingList = (this.props.ImTeaching ?
+                this.props.ImTeaching.map(subject =>
+                    <option value="select"> {subject} </option>
+                ): null
+        );
 
+        let ImTeaching = (
+            <FormGroup controlId="formControlsSelectImTeaching">
+                <ControlLabel>Currently I'm teaching</ControlLabel>
+                <FormControl componentClass="select" multiple>
+                    {ImTeachingList}
+                </FormControl>
+            </FormGroup>
+        );
         return (
             <div className="container">
 
@@ -161,10 +176,9 @@ class Sign extends Component {
 
                             {mySexPlease}
 
-                            {myInterests}
-
                             {aboutMe}
-
+                            {ImTeaching}
+                            {myInterests}
                             {submitButton}
                         </form>
                     </div>
