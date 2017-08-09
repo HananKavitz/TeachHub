@@ -73,18 +73,15 @@ class Sign extends Component {
 
         // my sex
         let mySexPlease = (
-            <div className="containers row">
-
-                <FormGroup controlId="formControlsMySex">
-                    <ControlLabel>My sex</ControlLabel>
-                    <FormControl componentClass="select" multiple>
-                        <option value="select">Male</option>
-                        <option value="select">Female</option>
+            <FormGroup controlId="formControlsMySex">
+                <ControlLabel>Gender</ControlLabel>
+                <FormControl componentClass="select">
+                    <option value="select">Male</option>
+                    <option value="select">Female</option>
 
 
-                    </FormControl>
-                </FormGroup>
-            </div>
+                </FormControl>
+            </FormGroup>
         );
 
         // Password

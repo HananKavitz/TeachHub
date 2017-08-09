@@ -9,6 +9,8 @@ import Contact from '../Components/Contact';
 import Login from '../Components/Login';
 import Signin from '../Containers/SignContainer';
 import PasswordRestore from '../Components/PasswordRestore';
+import TeachingAids from '../Containers/TeachingAids';
+
 const Routing = (
     <Router history={browserHistory }>
         <Route path='/' component={Main}>    
@@ -19,8 +21,9 @@ const Routing = (
             <Route path='Login'  component={Login} />
             <Route path='Signin'  component={Signin} />
             <Route path='PasswordRestore'  component={PasswordRestore} />
+            <Route path='TeachingAids'  component={TeachingAids} />
         </Route>
     </Router>
 );
-   
+
 export default Routing;

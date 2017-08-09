@@ -24,7 +24,7 @@ export default class MyNav extends Component {
                     Sign in
                 </Link>
             </div>;
-
+        let eventKey = 1;
         return (
             <div className='container'>
                 <div className="row row-content col-xs-12">
@@ -38,26 +38,36 @@ export default class MyNav extends Component {
                         </Navbar.Header>
                         <Navbar.Collapse>
                             <Nav>
-                                <NavItem eventKey={1}>
+                                <NavItem eventKey={eventKey}>
                                     <Link to={'Home'}><span className="glyphicon glyphicon-home "
                                                             aria-hidden="true"/>
                                     </Link>
                                 </NavItem>
-                                <NavItem eventKey={2}>
+                                <NavItem eventKey={eventKey}>
+                                    <Link to={'TeachingAids'}>
+                                        Teaching Aids
+                                    </Link>
+                                </NavItem>
+
+                                <NavItem eventKey={eventKey++}>
                                     <Link to={'About'}>
                                         About
                                     </Link>
                                 </NavItem>
-                                <NavItem eventKey={3}>
+
+                                <NavItem eventKey={eventKey++}>
                                     <Link to={'Contact'}>
                                         Contact
                                     </Link>
                                 </NavItem>
-                                <NavItem eventKey={4}>
+                            </Nav>
+                            <Nav pullRight>
+                                <NavItem eventKey={eventKey++}>
 
                                     {signin}
                                 </NavItem>
-                                <NavItem eventKey={5}>
+
+                                <NavItem eventKey={eventKey++}>
                                     {log}
                                 </NavItem>
 
