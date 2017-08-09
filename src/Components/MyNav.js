@@ -29,7 +29,7 @@ export default class MyNav extends Component {
             <div className='container'>
                 <div className="row row-content col-xs-12">
 
-                    <Navbar fixedTop={true}>
+                    <Navbar fixedTop={true} collapseOnSelect>
                         <Navbar.Header>
                             <Navbar.Brand>
                                 <Link to={'home'}></Link>
