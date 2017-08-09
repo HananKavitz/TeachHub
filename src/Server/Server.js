@@ -17,20 +17,12 @@ app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, '../../build')));
 
-// app.get('/parentStories', function(req,res,next) {
-//     res.writeHead(200, { 'Content-Type': 'text/plain' });
-//     res.end(JSON.stringify([{
-//             "user" : "hanan",
-//             "post" : "my boring post"
-//         },
-//         {
-//             "user" : "some one",
-//             "post" : "not as boring"
-//         }
-//     ])
-//     )
-//
-// });
+app.get('/interests', function(req,res,next) {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end(JSON.stringify(["Math", "Science","Bible"])
+    )
+
+});
 // app.put('/parentStories', function(req,res,next) {
 //     //res.writeHead(200, { 'Content-Type': 'text/plain' });
 //     console.log(req);

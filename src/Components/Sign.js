@@ -3,14 +3,16 @@ import {Image, FormGroup, Col, Button, ControlLabel, FormControl, InputGroup} fr
 
 
 class Sign extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.signinPB = this.signinPB.bind(this);
+
     }
+
     signinPB(evt) {
         evt.preventDefault();
         console.log("button pushed - joy");
-
+        console.log(evt);
     }
 
     render() {
@@ -31,7 +33,7 @@ class Sign extends Component {
         let submitButton = (
             <FormGroup>
                 <Col componentClass={ControlLabel} sm={2}>
-                    <Button type="submit" onClick = {this.signinPB}>
+                    <Button className="success" type="submit" onClick={this.signinPB}>
                         Sign in
                     </Button>
                 </Col>
@@ -50,7 +52,7 @@ class Sign extends Component {
 
                         </InputGroup.Addon>
 
-                        <FormControl type="text" placeholder="E-mail" id = "myEmail"/>
+                        <FormControl type="text" placeholder="E-mail" id="myEmail"/>
                     </InputGroup>
                 </Col>
             </FormGroup>);
@@ -103,14 +105,17 @@ class Sign extends Component {
         );
 
         // my interests
+        let allInterests = (this.props.interests ?
+            this.props.interests.map(interest =>
+                <option value="select"> {interest} </option>
+            ): null
+        );
+
         let myInterests = (
             <FormGroup controlId="formControlsSelectMyInterests">
                 <ControlLabel>My interests</ControlLabel>
                 <FormControl componentClass="select" multiple>
-                    <option value="select">Math</option>
-                    <option value="select">Science</option>
-                    <option value="other">Bible</option>
-
+                    {allInterests}
                 </FormControl>
             </FormGroup>
         );
@@ -136,10 +141,24 @@ class Sign extends Component {
 
                             {/*Password*/}
                             {myPassword}
+                        </form>
+                    </div>
+                </div>
 
+
+                <div className="row row-content">
+                    <div className="col-xs-12">
+                        <form>
                             {myImage}
 
                             {myName}
+                        </form>
+                    </div>
+                </div>
+                <div className="row row-content">
+                    <div className="col-xs-12">
+                        <form>
+
                             {mySexPlease}
 
                             {myInterests}
