@@ -24,7 +24,7 @@ export default class MyNav extends Component {
                     Sign in
                 </Link>
             </div>;
-        let eventKey = 1;
+        let eventKey = 0;
         return (
             <div className='container'>
                 <div className="row row-content col-xs-12">
@@ -43,7 +43,12 @@ export default class MyNav extends Component {
                                                             aria-hidden="true"/>
                                     </Link>
                                 </NavItem>
-                                <NavItem eventKey={eventKey}>
+                                <NavItem eventKey={eventKey++}>
+                                    <Link to={'Teachers'}>
+                                        Teachers
+                                    </Link>
+                                </NavItem>
+                                <NavItem eventKey={eventKey++}>
                                     <Link to={'TeachingAids'}>
                                         Teaching Aids
                                     </Link>
@@ -62,6 +67,9 @@ export default class MyNav extends Component {
                                 </NavItem>
                             </Nav>
                             <Nav pullRight>
+                                <NavItem eventKey={eventKey++}>
+                                    <input type="text" placeholder="Search" id="search" />
+                                </NavItem>
                                 <NavItem eventKey={eventKey++}>
 
                                     {signin}

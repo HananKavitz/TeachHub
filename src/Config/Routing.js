@@ -10,10 +10,11 @@ import Login from '../Components/Login';
 import Signin from '../Containers/SignContainer';
 import PasswordRestore from '../Components/PasswordRestore';
 import TeachingAids from '../Containers/TeachingAids';
+import Teachers from '../Components/Teachers';
 
 const Routing = (
     <Router history={browserHistory }>
-        <Route path='/' component={Main}>    
+        <Route path='/' component={Main}>
             <IndexRoute component={Home} />
             <Route path='Home'  component={Home} />
             <Route path='About'  component={About} />
@@ -22,6 +23,7 @@ const Routing = (
             <Route path='Signin'  component={Signin} />
             <Route path='PasswordRestore'  component={PasswordRestore} />
             <Route path='TeachingAids'  component={TeachingAids} />
+            <Route path='Teachers'  component={Teachers} />
         </Route>
     </Router>
 );
