@@ -68,7 +68,9 @@ export default class MyNav extends Component {
                             </Nav>
                             <Nav pullRight>
                                 <NavItem eventKey={eventKey++}>
-                                    <input type="text" placeholder="Search" id="search" />
+                                    <span className="glyphicon glyphicon-search text-primary" style={{"color":"lightblue"}} aria-hidden="true" onClick = {(searchObj,e)=> console.log("search button clicked")}>
+                                        <input type="text" placeholder="Search" id="search" />
+                                    </span>
                                 </NavItem>
                                 <NavItem eventKey={eventKey++}>
 
