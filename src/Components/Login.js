@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Form, FormGroup, Col, Button, ControlLabel, FormControl, InputGroup} from 'react-bootstrap';
 import {Link} from 'react-router';
 
-class Login extends Component {
+export default class Login extends Component {
     render() {
 
         const loginInstance = (
@@ -73,5 +73,3 @@ class Login extends Component {
         );
     }
 }
-
-export default Login;

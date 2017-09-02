@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 
 
-export default class Main extends Component {
+export default class Home extends Component {
 
   render(){
 
-    return (  
+    return (
 
-      
+
         <div className="container">
-        
+
             <div className="row row-content">
                 <div className="col-xs-12">
 

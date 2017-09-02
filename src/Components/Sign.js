@@ -1,35 +1,31 @@
 import React, {Component} from 'react';
-import {Image, FormGroup, Col, Button, ControlLabel, FormControl, InputGroup} from 'react-bootstrap';
-
+//import {Image, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
+import Form from "react-jsonschema-form";
+import {signinSchema,signinUiSchema} from '../Schemas/signinSchema';
 
 class Sign extends Component {
-    constructor(props) {
-        super(props);
-        this.signinPB = this.signinPB.bind(this);
-
-    }
-
-    signinPB(evt) {
-        evt.preventDefault();
-        console.log("button pushed - joy");
-        console.log(evt);
-    }
 
     render() {
 
-        //Image and image chooser
-        let myImage = (
-            <div className="col-xs-9 col-sm-5">
-                <Image src="./static/images/avatar_placeholder-9a2f53db6270aa02b5ae2c5af1ffc72b.svg" responsive/>
-                <FormGroup controlId="formControlsFile">
-                    <ControlLabel>{"Your pretty face"}</ControlLabel>
-                    <FormControl type="file" accept=".jpg, .jpeg, .png"
-                                 id="image_uploads"/>
-                </FormGroup>
+        return (
+            <div className="container">
 
-            </div>);
+                <div className="row row-content">
+                    <div className="col-sm-6 col-xs-12">
+                        <Form schema={signinSchema}
+                            uiSchema={signinUiSchema}
+                            onSubmit={this.props.signinCallback}
+                            onError ={this.props.onErrorSubmit} >
+
+                        </Form>
+                    </div>
+                </div>
+            </div>
+)
 
 
+
+/*
         //submit button
         let submitButton = (
             <FormGroup>
@@ -143,6 +139,7 @@ class Sign extends Component {
                 </FormControl>
             </FormGroup>
         );
+
         return (
             <div className="container">
 
@@ -154,7 +151,7 @@ class Sign extends Component {
 
                             {email}
 
-                            {/*Password*/}
+                            {/*Password}
                             {myPassword}
                         </form>
                     </div>
@@ -185,7 +182,7 @@ class Sign extends Component {
                 </div>
 
             </div>
-        );
+        );*/
     }
 }
 

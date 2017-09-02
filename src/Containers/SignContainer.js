@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Sign from '../Components/Sign';
+import EditProfile from '../Components/EditProfile';
 import axios from 'axios';
 
 class SignContainer extends Component {
@@ -7,37 +8,42 @@ class SignContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            "isSetImage": false
+            isSigned: false
         };
+        this.signinCallback = this.signinCallback.bind(this);
+        this.onErrorSubmit = this.onErrorSubmit.bind(this);
 
-        axios.get('/interests')
-            .then(function (response) {
-                this.setState({"interests":  response.data});
-            }.bind(this))
-            .catch(function (error) {
-                console.log(error);
-            });
-
-        axios.get('/ImTeaching')
-            .then(function (response) {
-                this.setState({"teaching":  response.data});
-            }.bind(this))
-            .catch(function (error) {
-                console.log(error);
-            });
-
-        this.fileChooserCallback = this.fileChooserCallback.bind(this);
     }
 
-    fileChooserCallback(){
-        let input = document.querySelector('input');
-    };
 
-    
+
+    signinCallback(type) {
+
+        // we are sending secret password here!!! not good
+        axios.post('/signin',type.formData)
+            .then(function (res) {
+                console.log(res);
+                console.log(this);
+                this.setState({isSigned : true});
+            }.bind(this))
+            .catch(function (error) {
+                console.log(error);
+            });
+
+    }
+
+    onErrorSubmit(err){
+        console.error(err);
+    }
+
     render() {
+        let sign = this.state.isSigned ? <EditProfile />:
+            <Sign signinCallback = {this.signinCallback} onErrorSubmit = {this.onErrorSubmit}/>;
+
+
         return (
-            <Sign isSetImage={this.state.isSetImage} interests = {this.state.interests}
-                  ImTeaching = {this.state.teaching} fileChooserCallback = {this.fileChooserCallback}/>
+            sign
+
         )
     }
 }

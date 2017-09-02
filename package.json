@@ -7,7 +7,9 @@
     "axios": "^0.16.2",
     "body-parser": "^1.17.2",
     "font-awesome": "^4.7.0",
+    "loadash": "^1.0.0",
     "morgan": "^1.8.2",
+    "nodemon": "^1.11.0",
     "path": "^0.12.7",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.1",
@@ -25,6 +27,6 @@
   },
   "proxy": "http://localhost:3001",
   "devDependencies": {
-    "nodemon": "^1.11.0"
+    "faker": "^4.1.0"
   }
 }
