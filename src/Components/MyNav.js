@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
 import {Link} from 'react-router';
-import SignContainer from '../Containers/SignContainer';
+
 
 
 export default class MyNav extends Component {
