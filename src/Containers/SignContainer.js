@@ -22,8 +22,7 @@ class SignContainer extends Component {
         // we are sending secret password here!!! not good
         axios.post('/signin',type.formData)
             .then(function (res) {
-                console.log(res);
-                console.log(this);
+
                 this.setState({isSigned : true});
             }.bind(this))
             .catch(function (error) {
@@ -37,10 +36,11 @@ class SignContainer extends Component {
     }
 
     render() {
+
         let sign = this.state.isSigned ? <EditProfile />:
-            <Sign signinCallback = {this.signinCallback} onErrorSubmit = {this.onErrorSubmit}/>;
+            <Sign signinCallback = {this.signinCallback} onErrorSubmit = {this.onErrorSubmit} />;
 
-
+            console.log(this);
         return (
             sign
 

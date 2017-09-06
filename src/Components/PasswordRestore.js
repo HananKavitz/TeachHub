@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import UnderConstruction from './UnderConstruction';
 
 class PasswordRestore extends Component {
     render() {
@@ -8,6 +8,7 @@ class PasswordRestore extends Component {
                 <div className="App-header">
 
                     <h2>Password restore page</h2>
+                    <UnderConstruction />
                 </div>
 
             </div>

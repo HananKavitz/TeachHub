@@ -1,14 +1,25 @@
 import React, {Component} from 'react';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
 import {Link} from 'react-router';
+import SignContainer from '../Containers/SignContainer';
+
 
 export default class MyNav extends Component {
     constructor(props) {
         super(props);
         this.state = {loged_in: false};
+
+        this.handleNavState = this.handleNavState.bind(this);
     }
 
+    handleNavState(newState){
+        this.setState({loged_in : newState});
+    };
+
+
     render() {
+
+
         const log = this.state.loged_in ?
             <Link to={'Logout'}>
                 <span className="glyphicon glyphicon-log-out" aria-hidden="true"/> Logout
@@ -17,15 +28,17 @@ export default class MyNav extends Component {
                 <span className="glyphicon glyphicon-log-in" aria-hidden="true"/> Login
             </Link>;
 
-        const signin = this.state.loged_in ? null :
+        const signin =
             <div>
-                <span className="glyphicon glyphicon-pencil" aria-hidden="true"/>
                 <Link to={'Signin'}>
+                    <span className="glyphicon glyphicon-pencil" aria-hidden="true"/>
                     Sign in
                 </Link>
+
             </div>;
         let eventKey = 0;
         return (
+
             <div className='container'>
                 <div className="row row-content col-xs-12">
 
@@ -79,6 +92,7 @@ export default class MyNav extends Component {
 
                                 <NavItem eventKey={eventKey++}>
                                     {log}
+
                                 </NavItem>
 
 
@@ -88,6 +102,7 @@ export default class MyNav extends Component {
                     </Navbar>
                 </div>
             </div>
+
 
         );
     };

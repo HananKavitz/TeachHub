@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import UnderConstruction from './UnderConstruction';
 
 
 export default class Contact extends Component {
@@ -15,6 +15,7 @@ export default class Contact extends Component {
                         <h2>
                             Contact
                         </h2>
+                        < UnderConstruction />
                     </div>
                 </div>
             </div>

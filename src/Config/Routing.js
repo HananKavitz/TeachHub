@@ -7,10 +7,12 @@ import Home from '../Components/Home';
 import About from '../Components/About';
 import Contact from '../Components/Contact';
 import Login from '../Components/Login';
-import Signin from '../Containers/SignContainer';
+import SignContainer from '../Containers/SignContainer';
 import PasswordRestore from '../Components/PasswordRestore';
 import TeachingAids from '../Containers/TeachingAids';
 import Teachers from '../Components/Teachers';
+import EditProfile from '../Components/EditProfile';
+
 
 const Routing = (
     <Router history={browserHistory }>
@@ -20,10 +22,11 @@ const Routing = (
             <Route path='About'  component={About} />
             <Route path='Contact'  component={Contact} />
             <Route path='Login'  component={Login} />
-            <Route path='Signin'  component={Signin} />
+            <Route path='Signin'  component={SignContainer} />
             <Route path='PasswordRestore'  component={PasswordRestore} />
             <Route path='TeachingAids'  component={TeachingAids} />
             <Route path='Teachers'  component={Teachers} />
+            <Route path='EditProfile'  component={EditProfile} />
         </Route>
     </Router>
 );

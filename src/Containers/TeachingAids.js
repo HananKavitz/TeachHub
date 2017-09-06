@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 //import TeachingAidsComponent from '../Components/TeachingAids';
-
+import UnderConstruction from '../Components/UnderConstruction';
 class TeachingAids extends Component {
 
     // constructor(props) {
@@ -19,6 +19,7 @@ class TeachingAids extends Component {
                         <h2>
                             Teaching Aids
                         </h2>
+                        < UnderConstruction />
                     </div>
                 </div>
             </div>

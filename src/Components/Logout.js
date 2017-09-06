@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import UnderConstruction from './UnderConstruction';
 
 
 class Logout extends Component {
@@ -8,6 +9,7 @@ class Logout extends Component {
                 <div className="App-header">
 
                     <h2>Logout page</h2>
+                    <UnderConstruction />
                 </div>
 
             </div>
