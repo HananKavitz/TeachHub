@@ -135,6 +135,14 @@ export default class EditProfile extends Component {
                 </FormGroup>
             );
 
+            let mySchools = (
+                <FormGroup controlId="formControlsSelectImTeaching">
+                    <ControlLabel>School I'm teaching in</ControlLabel>
+                    <FormControl componentClass="text" placeholder = "My school">
+                    </FormControl>
+                </FormGroup>
+            );
+
             return (
 
                 <div className="container">
@@ -158,6 +166,7 @@ export default class EditProfile extends Component {
                                     {aboutMe}
                                     {ImTeaching}
                                     {myInterests}
+                                    {mySchools}
                                     {submitButton}
 
                             </div>

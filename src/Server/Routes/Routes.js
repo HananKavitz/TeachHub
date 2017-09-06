@@ -22,6 +22,12 @@ router.post('/signin', function(req,res,next){
 
 });
 
+router.post('/Login', function(req,res,next){
+    console.log(req.body);
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end("Loged in");
+
+});
 
 router.get('/',function(req,res,next) {
 
