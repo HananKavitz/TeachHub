@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Sign from '../Components/Sign';
-import EditProfile from '../Components/EditProfile';
+import EditProfileContainer from './EditProfileContainer';
 import axios from 'axios';
 
 class SignContainer extends Component {
@@ -37,7 +37,7 @@ class SignContainer extends Component {
     }
 
     render() {
-        let sign = this.state.isSigned ? <EditProfile />:
+        let sign = this.state.isSigned ? <EditProfileContainer />:
             <Sign signinCallback = {this.signinCallback} onErrorSubmit = {this.onErrorSubmit}/>;
 
 
