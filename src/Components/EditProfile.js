@@ -137,7 +137,7 @@ export default class EditProfile extends Component {
 
             let mySchools = (
                 <FormGroup controlId="formControlsSelectImTeaching">
-                    <ControlLabel>School I'm teaching in</ControlLabel>
+                    <ControlLabel>School I am teaching in</ControlLabel>
                     <FormControl componentClass="text" placeholder = "My school">
                     </FormControl>
                 </FormGroup>
@@ -149,7 +149,7 @@ export default class EditProfile extends Component {
                     <br/>
                     <br/>
 
-                    <form>
+                    <form onSubmit = {this.props.sendFormToServer}>
                         <div className="row row-content">
                             <div className="col-xs-12">
 

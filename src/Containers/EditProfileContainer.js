@@ -39,10 +39,22 @@ export default class EditProfileContainer extends Component {
         input.src="";
     }
 
+    sendFormToServer(){
+        let profileForm = {};
+        axios.put('/EditProfileData',profileForm)
+        .then(function(res){
+
+        }.bind(this))
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
+
+
     render(){
         return (
             <EditProfile fileChooserCallback = {this.fileChooserCallback} interests = {this.state.interests}
-                ImTeaching = {this.state.ImTeaching}/>
+                ImTeaching = {this.state.ImTeaching} sendFormToServer = {this.sendFormToServer} />
         );
     }
 }
