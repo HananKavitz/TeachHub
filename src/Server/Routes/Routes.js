@@ -33,7 +33,7 @@ router.put('/EditProfileData',function(req,res,next) {
 
     console.log(req.body);
     res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end("Loged in");
+    res.end("Profile data edited");
 
 });
 router.get('/',function(req,res,next) {

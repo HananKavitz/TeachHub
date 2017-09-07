@@ -41,7 +41,7 @@ export default class EditProfileContainer extends Component {
 
     sendFormToServer(){
         let profileForm = {};
-        axios.put('/EditProfileData',profileForm)
+        axios.put('/EditProfileData',JSON.stringify(profileForm))
         .then(function(res){
 
         }.bind(this))
