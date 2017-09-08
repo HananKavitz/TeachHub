@@ -3,10 +3,10 @@ module.exports = {
     signinSchema : {
 		title: "Sign in now",
 		type: "object",
-		required: ["title","password"],
+		required: ["username","password","email"],
 		properties: {
-			title: {type: "string", title: "User name", default: ""},
-			Email: {type: "string",format: "email",default: ""},
+			username: {type: "string", username: "User name", default: ""},
+			email: {type: "string",format: "email",default: ""},
 			password: {type: "string", title: "Password", default: "",minLength: 6}
 
 		}

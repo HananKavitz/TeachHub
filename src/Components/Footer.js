@@ -29,6 +29,11 @@ export default class Footer extends Component {
                                             About
                                         </Link>
                                     </li>
+                                    <li>
+                                        <Link to={'TermsOfUse'}>
+                                            Terms of Use
+                                        </Link>
+                                    </li>
                                 </ul>
                             </div>
                             <div className="col-xs-6 col-sm-4">

@@ -12,6 +12,7 @@ import PasswordRestore from '../Components/PasswordRestore';
 import TeachingAids from '../Containers/TeachingAids';
 import Teachers from '../Components/Teachers';
 import EditProfile from '../Components/EditProfile';
+import TermsOfUse from '../Components/TermsOfUse';
 
 
 const Routing = (
@@ -27,6 +28,7 @@ const Routing = (
             <Route path='TeachingAids'  component={TeachingAids} />
             <Route path='Teachers'  component={Teachers} />
             <Route path='EditProfile'  component={EditProfile} />
+            <Route path='TermsOfUse'  component={TermsOfUse} />
         </Route>
     </Router>
 );

@@ -24,9 +24,11 @@ class SignContainer extends Component {
             .then(function (res) {
 
                 this.setState({isSigned : true});
+                console.log(res);
+
             }.bind(this))
             .catch(function (error) {
-                console.log(error);
+                console.error(error);
             });
 
     }
