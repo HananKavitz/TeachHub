@@ -13,7 +13,7 @@ export default class TermsOfUse extends Component {
                 <div className="row row-content">
                     <div className="col-xs-12">
                         <h2>
-                            Some one (a layer probably) will have to think about this stuff
+                            Some one (a lawyer probably) will have to think about this stuff
                         </h2>
                         < UnderConstruction />
                     </div>

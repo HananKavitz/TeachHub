@@ -20,16 +20,18 @@ const Routing = (
         <Route path='/' component={Main}>
             <IndexRoute component={Home} />
             <Route path='Home'  component={Home} />
-            <Route path='About'  component={About} />
-            <Route path='Contact'  component={Contact} />
             <Route path='Login'  component={Login} />
             <Route path='Signin'  component={SignContainer} />
             <Route path='PasswordRestore'  component={PasswordRestore} />
             <Route path='TeachingAids'  component={TeachingAids} />
             <Route path='Teachers'  component={Teachers} />
             <Route path='EditProfile'  component={EditProfile} />
-            <Route path='TermsOfUse'  component={TermsOfUse} />
+
         </Route>
+        
+        <Route path='About'  component={About} />
+        <Route path='Contact'  component={Contact} />
+        <Route path='TermsOfUse'  component={TermsOfUse} />
     </Router>
 );
 

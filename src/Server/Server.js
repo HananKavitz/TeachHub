@@ -42,7 +42,7 @@ passport.serializeUser(userAccount.serializeUser());
 passport.deserializeUser(userAccount.deserializeUser());
 
 // mongoose
-mongoose.connect('mongodb://localhost/27017/TeachhubDataBase');
+mongoose.connect('mongodb://' + hostname+ '/27017/TeachhubDataBase');
 
 app.listen(port, hostname, function(){
     console.log(`Server running at http://${hostname}:${port}/`);
