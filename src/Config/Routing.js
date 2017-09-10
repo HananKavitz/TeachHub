@@ -12,6 +12,7 @@ import PasswordRestore from '../Components/PasswordRestore';
 import TeachingAids from '../Containers/TeachingAids';
 import Teachers from '../Components/Teachers';
 import EditProfile from '../Components/EditProfile';
+import TermsOfUse from '../Components/TermsOfUse';
 
 
 const Routing = (
@@ -19,15 +20,18 @@ const Routing = (
         <Route path='/' component={Main}>
             <IndexRoute component={Home} />
             <Route path='Home'  component={Home} />
-            <Route path='About'  component={About} />
-            <Route path='Contact'  component={Contact} />
             <Route path='Login'  component={Login} />
             <Route path='Signin'  component={SignContainer} />
             <Route path='PasswordRestore'  component={PasswordRestore} />
             <Route path='TeachingAids'  component={TeachingAids} />
             <Route path='Teachers'  component={Teachers} />
             <Route path='EditProfile'  component={EditProfile} />
+
         </Route>
+        
+        <Route path='About'  component={About} />
+        <Route path='Contact'  component={Contact} />
+        <Route path='TermsOfUse'  component={TermsOfUse} />
     </Router>
 );
 
