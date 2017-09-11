@@ -8,13 +8,12 @@ var cookieParser = require('cookie-parser');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongoose = require('mongoose');
+var backEndConfig = require('../Config/BackEndConfig');
+var hostname = backEndConfig.serverURL;
 
-var hostname = 'localhost';
-var port = 3001;
+var port = backEndConfig.serverPort;
 
 var app = express();
-
-//mongoose.connect('mongodb://localhost/mongoData');
 
 app.use(morgan('dev'));
 
@@ -42,7 +41,7 @@ passport.serializeUser(userAccount.serializeUser());
 passport.deserializeUser(userAccount.deserializeUser());
 
 // mongoose
-mongoose.connect('mongodb://' + hostname+ '/27017/TeachhubDataBase');
+mongoose.connect('mongodb://' + backEndConfig.mongodbURL+ '/' + backEndConfig.mongodbPort + '/TeachhubDataBase');
 
 app.listen(port, hostname, function(){
     console.log(`Server running at http://${hostname}:${port}/`);
