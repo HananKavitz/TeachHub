@@ -3,6 +3,8 @@ var router = express.Router()
 var interests = require('../../database/Interests');
 var userAccount = require('../../database/Models/userAccount');
 var passport = require('passport');
+var Verify = require('./Verify');
+
 
 router.get('/interests', function(req,res,next) {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
@@ -18,8 +20,7 @@ router.get('/ImTeaching', function(req,res,next) {
 
 });
 
-router.post('/signin', function(req,res,next){
-    console.log(req.body);
+router.post('/register', function(req,res,next){
     userAccount.register(
         new userAccount({
             username : req.body.username,
@@ -28,30 +29,56 @@ router.post('/signin', function(req,res,next){
             req.body.password,
             function(err, account) {
                 if (err) {
-                    console.log('error',err);
-                    res.writeHead(404, { 'Content-Type': 'text/plain' });
+                    return res.status(500).
+                    json({ err : err });
                 }
 
                 passport.authenticate('local')(req, res, function () {
-                    console.log('success');
-                    res.writeHead(200, { 'Content-Type': 'text/plain' });
+                    return res.status(200).
+                    json({ status: 'Successful registration!!' });
                 });
             });
 
 });
 
 router.post('/Login', function(req,res,next){
-    console.log(req.body);
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end("Loged in");
+    passport.authenticate('local',function(err,user,info){
+        if (err){
+            return next(err);
+        }
+        if (!user){
+            return res.status(401).
+            json({
+                err: info
+            });
+        }
+
+        req.logIn(user,function(err){
+            if (err){
+                return res.status(500).
+                json({
+                    err: 'Could not log in user'
+                });
+            }
+            console.log('User in users: ',user);
+            var token = Verify.getToken(user);
+
+            res.status(200).json({
+                status : 'Login successful!',
+                success : true,
+                token : token
+            });
+        });
+    })(req,res,next);
 
 });
 
-router.post('/Logout', function(req,res,next){
-    console.log(req.body);
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end("Loged out");
-
+router.get('/Logout', function(req,res,next){
+    req.logout();
+    req.status(200).
+    json({
+        status: 'Nice knowing you'
+    });
 });
 
 router.put('/EditProfileData',function(req,res,next) {
@@ -61,12 +88,11 @@ router.put('/EditProfileData',function(req,res,next) {
     res.end("Profile data edited");
 
 });
+
 router.get('/',function(req,res,next) {
 
     res.sendFile(path.join(__dirname + '../../../../build/index.html'));
 
 });
-
-
 
 module.exports = router;

@@ -24,7 +24,7 @@ class SignContainer extends Component {
     signinCallback(type) {
 
         // we are sending secret password here!!! not good
-        axios.post('/signin',type.formData)
+        axios.post('/register',type.formData)
             .then(function (res) {
                 console.log(res);
                 this.setState({isSigned : true});
