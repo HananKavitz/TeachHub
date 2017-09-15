@@ -19,13 +19,12 @@ export default class MyNav extends Component {
 
     render() {
 
-
-        const log = this.state.loged_in ?
-            <Link to={'Logout'}>
-                <span className="glyphicon glyphicon-log-out" aria-hidden="true"/> Logout
-            </Link> :
+        const logSpan = this.state.loged_in ?
+            <span className="glyphicon glyphicon-log-out" aria-hidden="true"> Logout </span> :
+            <span className="glyphicon glyphicon-log-in" aria-hidden="true"> Login </span>;
+        const log =
             <Link to={'Login'}>
-                <span className="glyphicon glyphicon-log-in" aria-hidden="true"/> Login
+                {logSpan}
             </Link>;
 
         const signin =

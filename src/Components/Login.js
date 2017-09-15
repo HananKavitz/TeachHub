@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {Form, FormGroup, Col, Button, ControlLabel, FormControl, InputGroup} from 'react-bootstrap';
 import {Link} from 'react-router';
 
@@ -6,7 +7,7 @@ export default class Login extends Component {
     render() {
 
         const loginInstance = (
-            <Form horizontal>
+            <Form horizontal >
                 {/*email*/}
                 <FormGroup controlId="formHorizontalEmail">
                     <Col componentClass={ControlLabel} sm={5}>
@@ -33,7 +34,7 @@ export default class Login extends Component {
                                 </i>
                             </InputGroup.Addon>
 
-                            <FormControl type="text" placeholder="Password"/>
+                            <FormControl type="password" placeholder="Password"/>
                         </InputGroup>
                     </Col>
                 </FormGroup>
@@ -50,7 +51,7 @@ export default class Login extends Component {
                 {/*submit button*/}
                 <FormGroup>
                     <Col componentClass={ControlLabel} sm={2}>
-                        <Button type="submit">
+                        <Button type="submit" onClick= {this.props.loginCallback}>
                             Log in
                         </Button>
                     </Col>
@@ -72,4 +73,9 @@ export default class Login extends Component {
             </div>
         );
     }
+}
+
+
+Login.propTypes = {
+    loginCallback : PropTypes.func.isRequired
 }

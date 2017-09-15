@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import {Image, FormGroup, ControlLabel, FormControl,Col,Button,InputGroup} from 'react-bootstrap';
 
 export default class EditProfile extends Component {
