@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import {Image, FormGroup, ControlLabel, FormControl,Col,Button,InputGroup} from 'react-bootstrap';
-
+import PropTypes from 'prop-types';
 export default class EditProfile extends Component {
-
-
 
     render(){
         //Image and image chooser
@@ -175,3 +173,10 @@ export default class EditProfile extends Component {
             );
     }
 }
+
+EditProfile.propTypes = {
+    fileChooserCallback: PropTypes.func.isRequired,
+    interests : PropTypes.array.isRequired,
+    ImTeaching : PropTypes.array.isRequired,
+    sendFormToServer :  PropTypes.func.isRequired
+};

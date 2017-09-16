@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Modal,Button} from 'react-bootstrap';
 import {Link} from 'react-router';
+import PropTypes from 'prop-types';
 
 export default class UserAlreadyExist extends Component {
 
@@ -37,3 +38,7 @@ export default class UserAlreadyExist extends Component {
 
     }
 }
+
+UserAlreadyExist.propTypes = {
+    toggleUserExist: PropTypes.func.isRequired
+};
