@@ -30,8 +30,8 @@ export default class MyNav extends Component {
         const signin =
             <div>
                 <Link to={'Signin'}>
-                    <span className="glyphicon glyphicon-pencil" aria-hidden="true"/>
-                    Sign in
+                    <span className="glyphicon glyphicon-pencil" aria-hidden="true"> Register</span>
+
                 </Link>
 
             </div>;

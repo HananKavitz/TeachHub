@@ -2,17 +2,11 @@ module.exports = {
     loginSchema : {
 		title: "Log in",
 		type: "object",
-		required: ["password","email"],
+		required: ["username","password"],
 		properties: {
-			email: {type: "string",format: "email",default: ""},
-			password: {type: "string", title: "Password", default: "",minLength: 6}
+			username: {type: "string",title: "User name",default: ""},
+			password: {type: "string", title: "Password", default: ""}
 
 		}
-	},
-	loginUiSchema : {
-		password:{
-			"ui:widget": "password"
-		}
-
 	}
 }
