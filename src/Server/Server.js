@@ -22,11 +22,11 @@ app.use(bodyParser.json());
 
 app.use(cookieParser());
 
-app.use(require('express-session')({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: false
-}));
+// app.use(require('express-session')({
+//     secret: 'keyboard cat',
+//     resave: false,
+//     saveUninitialized: false
+// }));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -42,6 +42,29 @@ passport.deserializeUser(userAccount.deserializeUser());
 
 // mongoose
 mongoose.connect('mongodb://' + backEndConfig.mongodbURL+ '/' + backEndConfig.mongodbPort + '/TeachhubDataBase');
+
+//development error handling
+if (app.get('env')==='development'){
+    app.use(function(err,req,res,next){
+        res.status(err.status || 500);
+        res.json({
+            message : err.message,
+            error : err
+        });
+    });
+}
+
+//production error handling
+//no stacktraces leaked to user
+app.use(function(err,req,res,next){
+    res.status(err.status || 500);
+    res.json({
+        message : err.message,
+        error : {}
+    });
+});
+
+
 
 app.listen(port, hostname, function(){
     console.log(`Server running at http://${hostname}:${port}/`);

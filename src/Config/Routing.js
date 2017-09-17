@@ -6,7 +6,7 @@ import Main from '../Components/Main';
 import Home from '../Components/Home';
 import About from '../Components/About';
 import Contact from '../Components/Contact';
-import Login from '../Components/Login';
+import Login from '../Containers/LoginContainer';
 import SignContainer from '../Containers/SignContainer';
 import PasswordRestore from '../Components/PasswordRestore';
 import TeachingAids from '../Containers/TeachingAids';
@@ -28,7 +28,7 @@ const Routing = (
             <Route path='EditProfile'  component={EditProfile} />
 
         </Route>
-        
+
         <Route path='About'  component={About} />
         <Route path='Contact'  component={Contact} />
         <Route path='TermsOfUse'  component={TermsOfUse} />
