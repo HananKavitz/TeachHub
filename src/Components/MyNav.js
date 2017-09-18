@@ -27,9 +27,10 @@ export default class MyNav extends Component {
         let eventKey = 0;
         return (
             <div className='container'>
+
                 <div className="row row-content col-xs-12">
 
-                    <Navbar fixedTop={true} collapseOnSelect>
+                    <Navbar collapseOnSelect style={{"margine-bottom":}}>
                         <Navbar.Header>
                             <Navbar.Brand>
                                 <Link to={'home'}></Link>
