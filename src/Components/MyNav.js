@@ -7,19 +7,13 @@ import {Link} from 'react-router';
 export default class MyNav extends Component {
     constructor(props) {
         super(props);
-        this.state = {loged_in: false};
 
-        this.handleNavState = this.handleNavState.bind(this);
-    }
-
-    handleNavState(newState){
-        this.setState({loged_in : newState});
     };
 
 
     render() {
 
-        const logSpan = this.state.loged_in ?
+        const logSpan = this.props.isLogedIn ?
             <span className="glyphicon glyphicon-log-out" aria-hidden="true"> Logout </span> :
             <span className="glyphicon glyphicon-log-in" aria-hidden="true"> Login </span>;
         const log =
@@ -31,10 +25,16 @@ export default class MyNav extends Component {
             <div>
                 <Link to={'Signin'}>
                     <span className="glyphicon glyphicon-pencil" aria-hidden="true"> Register</span>
-
                 </Link>
 
             </div>;
+
+        const myName = 'Hanan';
+        const editPorfile =
+            <Link to={'EditProfile'}>
+                <span className="glyphicon glyphicon-user" aria-hidden="true"> {myName}</span>
+            </Link>
+        const registerOrEditProfile = this.props.isLogedIn ?  editPorfile : signin;
         let eventKey = 0;
         return (
 
@@ -86,7 +86,7 @@ export default class MyNav extends Component {
                                 </NavItem>
                                 <NavItem eventKey={eventKey++}>
 
-                                    {signin}
+                                    {registerOrEditProfile}
                                 </NavItem>
 
                                 <NavItem eventKey={eventKey++}>

@@ -5,6 +5,22 @@ import Footer from './Footer'
 import ScrollToTop from 'react-scroll-up'
 
 export default class Main extends Component {
+    constructor(props){
+        super(props);
+        this.state = {isLogedIn:false};
+        console.log(this);
+
+        this.loginCallback = this.loginCallback.bind(this);
+
+
+        this.props.route.childRoutes[1].isLogedCallback = this.loginCallback;
+
+
+    }
+
+    loginCallback(value){
+        this.setState({isLogedIn:value})
+    }
 
     render() {
 
@@ -12,7 +28,7 @@ export default class Main extends Component {
 
             <div>
 
-                <MyNav/>
+                <MyNav isLogedIn = {this.state.isLogedIn}/>
                 <br/>
                 <MyCarousel/>
                 <ScrollToTop  showUnder={60}>

@@ -11,7 +11,7 @@ import SignContainer from '../Containers/SignContainer';
 import PasswordRestore from '../Components/PasswordRestore';
 import TeachingAids from '../Containers/TeachingAids';
 import Teachers from '../Components/Teachers';
-import EditProfile from '../Components/EditProfile';
+import EditProfile from '../Containers/EditProfileContainer';
 import TermsOfUse from '../Components/TermsOfUse';
 
 
