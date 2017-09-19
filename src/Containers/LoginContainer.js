@@ -12,7 +12,6 @@ export default class LoginContainer extends Component {
         //methods on this object
 		this.loginCallback = this.loginCallback.bind(this);
 		this.onErrorSubmit = this.onErrorSubmit.bind(this);
-		console.log(this);
     }
 
 	loginCallback(data){
@@ -23,9 +22,9 @@ export default class LoginContainer extends Component {
 
 		axios.post(apiToCall,dataToSend)
             .then(function (res) {
-                console.log(res);
                 this.setState({isLogedIn : shouldLog});
 				this.props.route.isLogedCallback(shouldLog);
+				this.props.router.push('/Home');// go to Home page
             }.bind(this))
             .catch(function (error) {
                 console.log(error);

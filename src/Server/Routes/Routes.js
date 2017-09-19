@@ -41,36 +41,31 @@ router.post('/register', function(req,res,next){
 
 });
 
-router.post('/Login', function(req,res,next){
-    passport.authenticate('local',function(err,user,info){
-        if (err){
-            return next(err);
-        }
-        if (!user){
-            return res.status(401).
-            json({
-                err: info
-            });
-        }
-
-        req.logIn(user,function(err){
-            if (err){
-                return res.status(500).
-                json({
-                    err: 'Could not log in user'
-                });
-            }
-            console.log('User in users: ',user);
-            var token = Verify.getToken(user);
-
-            res.status(200).json({
-                status : 'Login successful!',
-                success : true,
-                token : token
-            });
+router.post('/Login', function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.status(401).json({
+        err: info
+      });
+    }
+    req.logIn(user, function(err) {
+      if (err) {
+        return res.status(500).json({
+          err: 'Could not log in user'
         });
-    })(req,res,next);
+      }
 
+      //const token = Verify.getToken(user);
+              res.status(200).json({
+        status: 'Login successful!',
+        success: true,
+        token: JSON.stringify(user)
+      });
+    });
+  })(req,res,next);
 });
 
 router.get('/Logout', function(req,res,next){

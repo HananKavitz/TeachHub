@@ -8,14 +8,9 @@ export default class Main extends Component {
     constructor(props){
         super(props);
         this.state = {isLogedIn:false};
-        console.log(this);
 
         this.loginCallback = this.loginCallback.bind(this);
-
-
         this.props.route.childRoutes[1].isLogedCallback = this.loginCallback;
-
-
     }
 
     loginCallback(value){

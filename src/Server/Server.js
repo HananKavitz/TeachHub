@@ -2,7 +2,7 @@ var express = require('express');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var path = require('path');
-var fs = require('fs');
+//var fs = require('fs');
 var router = require('./Routes/Routes');
 var cookieParser = require('cookie-parser');
 var passport = require('passport');
@@ -17,8 +17,8 @@ var app = express();
 
 app.use(morgan('dev'));
 
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cookieParser());
 
@@ -28,10 +28,8 @@ app.use(cookieParser());
 //     saveUninitialized: false
 // }));
 app.use(passport.initialize());
-app.use(passport.session());
+//app.use(passport.session());
 
-app.use(express.static(path.join(__dirname, '../../build')));
-app.use('/', router);
 
 
 // passport config
@@ -39,6 +37,9 @@ var userAccount = require('../database/Models/userAccount');
 passport.use(new LocalStrategy(userAccount.authenticate()));
 passport.serializeUser(userAccount.serializeUser());
 passport.deserializeUser(userAccount.deserializeUser());
+
+app.use(express.static(path.join(__dirname, '../../build')));
+app.use('/', router);
 
 // mongoose
 mongoose.connect('mongodb://' + backEndConfig.mongodbURL+ '/' + backEndConfig.mongodbPort + '/TeachhubDataBase');
@@ -63,8 +64,6 @@ app.use(function(err,req,res,next){
         error : {}
     });
 });
-
-
 
 app.listen(port, hostname, function(){
     console.log(`Server running at http://${hostname}:${port}/`);
