@@ -5,12 +5,7 @@ import {Link} from 'react-router';
 
 
 export default class MyNav extends Component {
-    constructor(props) {
-        super(props);
-
-    };
-
-
+    
     render() {
 
         const logSpan = this.props.isLogedIn ?

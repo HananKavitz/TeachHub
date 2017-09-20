@@ -27,7 +27,8 @@ export default class LoginContainer extends Component {
 				this.props.router.push('/Home');// go to Home page
             }.bind(this))
             .catch(function (error) {
-                console.log(error);
+				alert(dataToSend.username + ' does not exist - you need to create a user account')
+				console.log(error);
             });
 
 	}
