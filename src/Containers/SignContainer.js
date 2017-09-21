@@ -31,8 +31,7 @@ class SignContainer extends Component {
 
             }.bind(this))
             .catch(function (error) {
-                console.log(error);
-                console.log("got 404");
+                console.error(error);
                 this.setState({userAlreadyExist : true})
             }.bind(this));
 

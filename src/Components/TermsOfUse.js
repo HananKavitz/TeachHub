@@ -15,7 +15,7 @@ export default class TermsOfUse extends Component {
                         <h2>
                             Some one (a lawyer probably) will have to think about this stuff
                         </h2>
-                        < UnderConstruction />
+                        <UnderConstruction />
                     </div>
                 </div>
             </div>

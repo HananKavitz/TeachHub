@@ -15,7 +15,7 @@ export default class Contact extends Component {
                         <h2>
                             Contact
                         </h2>
-                        < UnderConstruction />
+                        <UnderConstruction />
                     </div>
                 </div>
             </div>

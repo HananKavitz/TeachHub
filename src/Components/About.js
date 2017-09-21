@@ -15,7 +15,7 @@ export default class About extends Component {
                         <h2>
                             About
                         </h2>
-                        < UnderConstruction />
+                        <UnderConstruction />
                     </div>
                 </div>
             </div>
