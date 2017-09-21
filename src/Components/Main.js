@@ -24,7 +24,11 @@ export default class Main extends Component {
     }
 
     render() {
-
+        const childrenWithNewProps = React.Children.map(this.props.children,
+            (child) => React.cloneElement(child, {
+                isLogedIn: this.state.isLogedIn}
+            )
+        );
         return (
 
             <div>
@@ -38,7 +42,7 @@ export default class Main extends Component {
                     </span>
                 </ScrollToTop>
                 <br/>
-                {this.props.children}
+                {childrenWithNewProps}
                 <br/>
                 <br/>
                 <Footer/>

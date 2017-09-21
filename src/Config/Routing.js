@@ -6,6 +6,7 @@ import Main from '../Components/Main';
 import Home from '../Components/Home';
 import About from '../Components/About';
 import Contact from '../Components/Contact';
+import NewTeachingAid from '../Components/NewTeachingAid';
 import Login from '../Containers/LoginContainer';
 import Logout from '../Components/Logout'
 import SignContainer from '../Containers/SignContainer';
@@ -28,7 +29,7 @@ const Routing = (
             <Route path='TeachingAids'  component={TeachingAids} />
             <Route path='Teachers'  component={Teachers} />
             <Route path='EditProfile'  component={EditProfile} />
-
+            <Route path='NewTeachingAid'  component={NewTeachingAid} />
         </Route>
 
         <Route path='About'  component={About} />
