@@ -7,6 +7,7 @@ import Home from '../Components/Home';
 import About from '../Components/About';
 import Contact from '../Components/Contact';
 import Login from '../Containers/LoginContainer';
+import Logout from '../Components/Logout'
 import SignContainer from '../Containers/SignContainer';
 import PasswordRestore from '../Components/PasswordRestore';
 import TeachingAids from '../Containers/TeachingAids';
@@ -21,6 +22,7 @@ const Routing = (
             <IndexRoute component={Home} />
             <Route path='Home'  component={Home} />
             <Route path='Login'  component={Login} />
+            <Route path='Logout'  component={Logout} />
             <Route path='Signin'  component={SignContainer} />
             <Route path='PasswordRestore'  component={PasswordRestore} />
             <Route path='TeachingAids'  component={TeachingAids} />
@@ -32,6 +34,7 @@ const Routing = (
         <Route path='About'  component={About} />
         <Route path='Contact'  component={Contact} />
         <Route path='TermsOfUse'  component={TermsOfUse} />
+        <Route path='Logout'  component={Logout} />
     </Router>
 );
 

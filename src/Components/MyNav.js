@@ -2,21 +2,19 @@ import React, {Component} from 'react';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
 import {Link} from 'react-router';
 
-
-
 export default class MyNav extends Component {
-    
+
     render() {
 
-        const logSpan = this.props.isLogedIn ?
-            <span className="glyphicon glyphicon-log-out" aria-hidden="true"> Logout </span> :
-            <span className="glyphicon glyphicon-log-in" aria-hidden="true"> Login </span>;
-        const log =
+        const log = this.props.isLogedIn ?
+            <Link to={'Logout'}>
+                <span className="glyphicon glyphicon-log-out" aria-hidden="true"> Logout </span>
+            </Link> :
             <Link to={'Login'}>
-                {logSpan}
+                <span className="glyphicon glyphicon-log-in" aria-hidden="true"> Login </span>
             </Link>;
 
-        const signin =
+        const registerLink =
             <div>
                 <Link to={'Signin'}>
                     <span className="glyphicon glyphicon-pencil" aria-hidden="true"> Register</span>
@@ -24,12 +22,12 @@ export default class MyNav extends Component {
 
             </div>;
 
-        const myName = 'Hanan';
-        const editPorfile =
+        const editPorfileLink =
             <Link to={'EditProfile'}>
-                <span className="glyphicon glyphicon-user" aria-hidden="true"> {myName}</span>
+                <span className="glyphicon glyphicon-user" aria-hidden="true"> {this.props.userName}</span>
             </Link>
-        const registerOrEditProfile = this.props.isLogedIn ?  editPorfile : signin;
+        const registerOrEditProfile = this.props.isLogedIn ?  editPorfileLink : registerLink;
+
         let eventKey = 0;
         return (
 
@@ -46,8 +44,7 @@ export default class MyNav extends Component {
                         <Navbar.Collapse>
                             <Nav>
                                 <NavItem eventKey={eventKey}>
-                                    <Link to={'Home'}><span className="glyphicon glyphicon-home "
-                                                            aria-hidden="true"/>
+                                    <Link to={'Home'}><span className="glyphicon glyphicon-home " aria-hidden="true"/>
                                     </Link>
                                 </NavItem>
                                 <NavItem eventKey={eventKey++}>
@@ -75,7 +72,8 @@ export default class MyNav extends Component {
                             </Nav>
                             <Nav pullRight>
                                 <NavItem eventKey={eventKey++}>
-                                    <span className="glyphicon glyphicon-search text-primary" style={{"color":"lightblue"}} aria-hidden="true" onClick = {(searchObj,e)=> console.log("search button clicked")}>
+                                    <span className="glyphicon glyphicon-search text-primary" style={{"color":"lightblue"}}
+                                        aria-hidden="true" onClick = {(searchObj,e)=> console.log("search button clicked")}>
                                         <input type="text" placeholder="Search" id="search" />
                                     </span>
                                 </NavItem>
@@ -100,4 +98,6 @@ export default class MyNav extends Component {
 
         );
     };
+
+
 };

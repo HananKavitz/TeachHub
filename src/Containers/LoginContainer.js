@@ -5,9 +5,6 @@ import axios from 'axios';
 export default class LoginContainer extends Component {
 	constructor(props) {
         super(props);
-        this.state = {
-            isLogedIn: false
-        };
 
         //methods on this object
 		this.loginCallback = this.loginCallback.bind(this);
@@ -16,19 +13,20 @@ export default class LoginContainer extends Component {
 
 	loginCallback(data){
         // we are sending secret password here!!! not good
-		const shouldLog = !this.state.isLogedIn;
-		const dataToSend = shouldLog ? data.formData : {};
-		const apiToCall = shouldLog ? '/Login' : '/Logout';
+
+		const dataToSend = data.formData;
+		const username = dataToSend.username;
+		const apiToCall = '/Login';
 
 		axios.post(apiToCall,dataToSend)
             .then(function (res) {
-                this.setState({isLogedIn : shouldLog});
-				this.props.route.isLogedCallback(shouldLog);
+				this.props.route.updateLoginCallback(true,username);// let Main know state changed
 				this.props.router.push('/Home');// go to Home page
             }.bind(this))
-            .catch(function (error) {
-				alert(dataToSend.username + ' does not exist - you need to create a user account')
-				console.log(error);
+            .catch((error) => {
+
+				alert(dataToSend.username + ' does not exist or wrong password')
+				console.log('error',error);
             });
 
 	}
@@ -37,8 +35,6 @@ export default class LoginContainer extends Component {
     }
 
 	render(){
-		const loginUI = this.state.isLogedIn ?
-			null : <Login loginCallback = {this.loginCallback} onErrorSubmit = {this.onErrorSubmit}/>;
-		return loginUI
+		return <Login loginCallback = {this.loginCallback} onErrorSubmit = {this.onErrorSubmit}/>;
 	}
 };

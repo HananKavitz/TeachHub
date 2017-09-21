@@ -68,9 +68,9 @@ router.post('/Login', function(req, res, next) {
   })(req,res,next);
 });
 
-router.get('/Logout', function(req,res,next){
+router.post('/Logout', function(req,res,next){
     req.logout();
-    req.status(200).
+    res.status(200).
     json({
         status: 'Nice knowing you'
     });
