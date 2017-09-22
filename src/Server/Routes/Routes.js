@@ -58,11 +58,12 @@ router.post('/Login', function(req, res, next) {
         });
       }
 
-      //const token = Verify.getToken(user);
+      const token = Verify.getToken(user);
+      //const token = JSON.stringify(user);
               res.status(200).json({
         status: 'Login successful!',
         success: true,
-        token: JSON.stringify(user)
+        token: token
       });
     });
   })(req,res,next);

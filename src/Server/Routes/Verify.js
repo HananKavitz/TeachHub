@@ -3,15 +3,7 @@ var jwt = require('jsonwebtoken');
 var config  = require('../../Config/BackEndConfig');
 
 exports.getToken = function (user) {
-	try{
-		console.log(user);
-		const token = JSON.stringify(user);
-		//const token = jwt.sign(JSON.stringify(user), config.secretKey);
-	}
-	catch(err){
-		console.log(err);
-	}
-	
+	const token = jwt.sign(JSON.stringify(user), config.secretKey);
 	return token;
 };
 
