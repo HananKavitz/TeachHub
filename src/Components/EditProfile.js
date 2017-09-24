@@ -19,9 +19,14 @@ export default class EditProfile extends Component {
             //submit button
             let submitButton = (
                 <FormGroup>
+                    <Col componentClass={ControlLabel} sm={1}>
+                        <Button bsStyle = 'primary' className="success" type="submit" onClick={this.signinPB}>
+                            Update
+                        </Button>
+                    </Col>
                     <Col componentClass={ControlLabel} sm={2}>
-                        <Button className="success" type="submit" onClick={this.signinPB}>
-                            Sign in
+                        <Button className="success" onClick={this.cancel}>
+                            Cancel
                         </Button>
                     </Col>
                 </FormGroup>);
