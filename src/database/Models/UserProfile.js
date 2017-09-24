@@ -7,8 +7,8 @@ var userProfile = new Schema({
 	profileImage: String,//need to be path to images db
 	interests : [String],
 	ImTeaching : [String],
-	createdTeachingAids :[{type:teachingAid}],
-	updatedTeachingAids : [{type:teachingAid}],
+	createdTeachingAids : [Schema.Types.ObjectId],
+	updatedTeachingAids : [Schema.Types.ObjectId],
 	aboutMe : String,
 	mySchools : [String],
 	mySex : {type:String , enum : sexs},
@@ -16,4 +16,4 @@ var userProfile = new Schema({
 });
 
 
-module.exports = mongoose.model('UseeProfile', userProfile);
+module.exports = mongoose.model('UserProfile', userProfile);

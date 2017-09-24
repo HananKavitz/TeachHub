@@ -6,20 +6,20 @@ var comment = new Schema({
 	commentText : {type: String, required:true},
 	rating : Number,
 	likes : Number,
-	createdOn : {type : Date,default : Data.now()}
+	createdOn : {type : Date,default : Date.now}
 });
 
 var teachingAid = new Schema({
     files : [String],// path to files in db
 	title : {type:String , required :true},
 	description : String,
-	rating : Number,
+	rating : {type: Number,min : 1,max : 5},
 	likes : Number,
 	comments : [{type : comment}],
-	createdOn :   {type : Date , default : Date.now()},
-	lastUpdated : {type : Date , default : Date.now()},
-	creator : {type:userAccount , required:true},
-	editors : [{type:userAccount}],
+	createdOn :   {type : Date,default : Date.now},
+	lastUpdated : {type : Date,default : Date.now},
+	creator : {Schema.Types.ObjectId, required:true},
+	editors : [Schema.Types.ObjectId],
 	tags : [String],
 	version: [String]
 
