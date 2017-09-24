@@ -11,15 +11,17 @@ var comment = new Schema({
 
 var teachingAid = new Schema({
     files : [String],// path to files in db
-	title : {type:String, required :true},
+	title : {type:String , required :true},
 	description : String,
 	rating : Number,
 	likes : Number,
 	comments : [{type : comment}],
-	createdOn :   {type : Date,default : Date.now()},
-	lastUpdated : {type : Date,default : Date.now()},
-	creator : {type:userAccount, required:true},
+	createdOn :   {type : Date , default : Date.now()},
+	lastUpdated : {type : Date , default : Date.now()},
+	creator : {type:userAccount , required:true},
 	editors : [{type:userAccount}],
+	tags : [String],
+	version: [String]
 
 });
 
