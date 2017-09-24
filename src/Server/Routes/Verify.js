@@ -3,8 +3,9 @@ var jwt = require('jsonwebtoken');
 var config  = require('../../Config/BackEndConfig');
 
 exports.getToken = function (user) {
-	const token = jwt.sign(JSON.stringify(user), config.secretKey);
-	return token;
+
+	user.expiresIn = '1h';
+	return jwt.sign(JSON.stringify(user), config.secretKey);
 };
 
 exports.verifyOrdinaryUser = function (req, res, next) {
