@@ -6,7 +6,7 @@ var comment = new Schema({
 	commentText : {type: String, required:true},
 	rating : Number,
 	likes : Number,
-	createdOn : {type : Date,default : Data.now()}
+	createdOn : {type : Date,default : Data.now}
 });
 
 var teachingAid = new Schema({
