@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var teachingAid = require('./TeachingAid')
-var sexs = ['Male','Female'];
+var sexs = ['Man','Woman'];
+
 var userProfile = new Schema({
     username: {type:String,required:true},
 	profileImage: String,//need to be path to images db
@@ -11,7 +11,8 @@ var userProfile = new Schema({
 	updatedTeachingAids : [Schema.Types.ObjectId],
 	aboutMe : String,
 	mySchools : [String],
-	mySex : {type:String , enum : sexs},
+	mySex : {type : String , enum : sexs},
+    personalScore : {type : Number , default : 1}
 
 });
 
