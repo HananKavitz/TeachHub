@@ -1,13 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var userAccount = require('./UserAccount');
 
-var comment = new Schema({
-	commentText : {type: String, required:true},
-	rating : Number,
-	likes : Number,
-	createdOn : {type : Date,default : Date.now}
-});
 
 var teachingAid = new Schema({
     files : [String],// path to files in db
@@ -15,7 +8,7 @@ var teachingAid = new Schema({
 	description : String,
 	rating : {type: Number,min : 1,max : 5},
 	likes : Number,
-	comments : [{type : comment}],
+	comments : [Schema.Types.ObjectId],
 	createdOn :   {type : Date,default : Date.now},
 	lastUpdated : {type : Date,default : Date.now},
 	creator : {Schema.Types.ObjectId, required:true},
