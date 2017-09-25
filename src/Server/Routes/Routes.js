@@ -6,14 +6,14 @@ var passport = require('passport');
 var Verify = require('./Verify');
 
 
-router.get('/interests', function(req,res,next) {
+router.get('/interests',Verify.verifyOrdinaryUser, function(req,res,next) {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end(JSON.stringify(interests.interests)
     )
 
 });
 
-router.get('/ImTeaching', function(req,res,next) {
+router.get('/ImTeaching', Verify.verifyOrdinaryUser, function(req,res,next) {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end(JSON.stringify(interests.interests)
     )

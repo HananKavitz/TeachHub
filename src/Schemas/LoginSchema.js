@@ -1,3 +1,4 @@
+
 module.exports = {
     loginSchema : {
 		title: "Log in",
@@ -5,14 +6,8 @@ module.exports = {
 		required: ["username","password"],
 		properties: {
 			username: {type: "string",title: "User name",default: ""},
-			password: {type: "string", title: "Password", default: "",minLength: 6}
-
+			password: {type: "string", title: "Password", default: "",minLength: 6},
+			forgotPassword : {type: "string",title: "Forgot your password?",default: "Password restore"}
 		}
-	},
-	loginUiSchema : {
-		password:{
-			"ui:widget": "password"
-		}
-
 	}
 }
