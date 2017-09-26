@@ -11,7 +11,7 @@ var teachingAid = new Schema({
 	comments : [Schema.Types.ObjectId],
 	createdOn :   {type : Date,default : Date.now},
 	lastUpdated : {type : Date,default : Date.now},
-	creator : {Schema.Types.ObjectId, required:true},
+	creator : {type : Schema.Types.ObjectId, required:true},
 	editors : [Schema.Types.ObjectId],
 	tags : [String],
 	version: [String]
