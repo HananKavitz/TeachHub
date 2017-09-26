@@ -9,6 +9,8 @@ export default class Logout extends Component {
     }
 
     closeCallback(){
+		window.sessionStorage.removeItem('userName');
+		window.sessionStorage.removeItem('authToken');
         this.props.route.updateLoginCallback(false,'');
     };
 

@@ -77,7 +77,7 @@ router.post('/Logout', function(req,res,next){
     });
 });
 
-router.put('/EditProfileData',function(req,res,next) {
+router.put('/EditProfileData',Verify.verifyOrdinaryUser,function(req,res,next) {
 
     console.log(req.body);
     res.writeHead(200, { 'Content-Type': 'text/plain' });

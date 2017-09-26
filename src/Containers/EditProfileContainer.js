@@ -12,8 +12,12 @@ export default class EditProfileContainer extends Component {
 
         this.fileChooserCallback = this.fileChooserCallback.bind(this);
     }
-    componentWillMount(){
-        axios.get('/interests')
+    componentDidMount(){
+        const axiosObj = axios.create({
+			timeout : 1000,
+			headers : {'x-access-token': window.sessionStorage.getItem("authToken")}
+		});
+        axiosObj.get('/interests')
             .then(function (response) {
                 this.setState({interests:  response.data});
             }.bind(this))
@@ -21,7 +25,7 @@ export default class EditProfileContainer extends Component {
                 console.log(error);
             });
 
-        axios.get('/ImTeaching')
+        axiosObj.get('/ImTeaching')
             .then(function (response) {
                 this.setState({ImTeaching:  response.data});
             }.bind(this))

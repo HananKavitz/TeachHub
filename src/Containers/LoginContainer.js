@@ -17,12 +17,14 @@ export default class LoginContainer extends Component {
 		const dataToSend = data.formData;
 		const username = dataToSend.username;
 		const apiToCall = '/Login';
-
+		
 		axios.post(apiToCall,dataToSend)
             .then(function (res) {
-				this.props.route.updateLoginCallback(true,username);// let Main know state changed
+				this.props.route.updateLoginCallback(true,username,res.data.token);// let Main know state changed
+				window.sessionStorage.setItem("authToken", res.data.token);
+				window.sessionStorage.setItem("userName", username);
 				this.props.router.push('/Home');// go to Home page
-            }.bind(this))
+			}.bind(this))
             .catch((error) => {
 
 				alert(dataToSend.username + ' does not exist or wrong password')

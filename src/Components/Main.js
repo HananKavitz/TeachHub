@@ -16,11 +16,19 @@ export default class Main extends Component {
         this.props.route.childRoutes[1].updateLoginCallback = this.updateLoginCallback;
         this.props.route.childRoutes[2].updateLoginCallback = this.updateLoginCallback;
     }
-
-    updateLoginCallback(value,userName){
+    componentDidMount() {
+        if (window.sessionStorage.getItem("authToken")){
+            this.setState({
+                isLogedIn : true,
+                userName :  window.sessionStorage.getItem("userName")
+            })
+        }
+    }
+    updateLoginCallback(value,userName,authToken){
         this.setState({
             isLogedIn : value,
-            userName : userName})
+            userName : userName
+        })
     }
 
     render() {
