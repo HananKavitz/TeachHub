@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import MyCarousel from './MyCarousel';
 import MyNav from './MyNav';
 import Footer from './Footer'
-import {PageHeader} from 'react-bootstrap'
 import Header from './header'
+
 
 
 export default class Main extends Component {
@@ -13,14 +12,12 @@ export default class Main extends Component {
         return (
 
             <div>
-            <Header/>
+              <Header/>
+              <MyNav/>
+              <br/>
 
-                    <br/>
-                
-                    <br/>
-                    {this.props.children}
-                    <br/>
-                    <br/>
+                {this.props.children}
+
                 <Footer/>
             </div>
 

@@ -1,22 +1,30 @@
 
 import React, {Component} from 'react';
-import {Navbar, Nav, NavItem} from 'react-bootstrap';
-import {Link} from 'react-router';
-import MyNav from './MyNav';
+
 
 
 export default class Header extends Component {
 
   render() {
+    var mystyle= {
+      color:"lightblue",
+      background: "rgb(106, 187, 227)",
+      height: "200px"
+      }
+
 
       return (
-
-        <div className='container' style={{"color":"lightblue" , "background-image":"url(./static/images/header_sky.jpg)"}}>
-              <div className="row row-content col-xs-12" >
-                <p>  My header </p>
-                <MyNav/>
-
+        <div className='container' style={mystyle}>
+              <div className="row row-content col-xs-2" >
+                 <img src="./static/images/icon1.png" alt="logo" style={{"width":"120px","height":"120px","padding-top":"20px"}}/>
               </div>
+              <div className="row row-content col-xs-9" >
+                 <p style={{"font-size":"80pt","color":"#2028e8"}}>Teach Aid
+
+                 <span style={{"font-size":"20pt"}}> your teaching aid location</span></p>
+              </div>
+
+
           </div>
         )
       }

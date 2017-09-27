@@ -28,9 +28,9 @@ export default class MyNav extends Component {
         return (
             <div className='container'>
 
-                <div className="row row-content col-xs-12">
+                <div className="row row-content col-xs-12" style={{"padding":"0px"}}>
 
-                    <Navbar collapseOnSelect style={{"margine-bottom":}}>
+                    <Navbar collapseOnSelect style={{"margin":"0px"}}>
                         <Navbar.Header>
                             <Navbar.Brand>
                                 <Link to={'home'}></Link>
@@ -69,7 +69,7 @@ export default class MyNav extends Component {
                             </Nav>
                             <Nav pullRight>
                                 <NavItem eventKey={eventKey++}>
-                                    <span className="glyphicon glyphicon-search text-primary" style={{"color":"lightblue"}} aria-hidden="true" onClick = {(searchObj,e)=> console.log("search button clicked")}>
+                                    <span className="glyphicon glyphicon-search text-primary" style={{"color":"blue"}} aria-hidden="true" onClick = {(searchObj,e)=> console.log("search button clicked")}>
                                         <input type="text" placeholder="Search" id="search" />
                                     </span>
                                 </NavItem>
