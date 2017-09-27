@@ -71,8 +71,8 @@ export default class EditProfile extends Component {
                     <FormGroup controlId="formControlsMySex">
                         <ControlLabel>Gender</ControlLabel>
                         <FormControl componentClass="select">
-                            <option value="select">Male</option>
-                            <option value="select">Female</option>
+                            <option value="select">Man</option>
+                            <option value="select">Woman</option>
 
 
                         </FormControl>
@@ -99,8 +99,8 @@ export default class EditProfile extends Component {
             );
 
             // my interests
-            let allInterests = (this.props.interests ?
-                this.props.interests.map((interest,key) =>
+            let allInterests = (this.props.profileData.interests ?
+                this.props.profileData.interests.map((interest,key) =>
                     <option value="select" key = {key}> {interest} </option>
                 ): null
             );
@@ -122,8 +122,8 @@ export default class EditProfile extends Component {
                 </FormGroup>
             );
             // currently I'm teaching
-            let ImTeachingList = (this.props.ImTeaching ?
-                    this.props.ImTeaching.map((subject,key) =>
+            let ImTeachingList = (this.props.profileData.ImTeaching ?
+                    this.props.profileData.ImTeaching.map((subject,key) =>
                         <option value="select" key = {key}> {subject} </option>
                     ): null
             );
@@ -139,8 +139,8 @@ export default class EditProfile extends Component {
 
             let mySchools = (
                 <FormGroup controlId="formControlsSelectImTeaching">
-                    <ControlLabel>School I am teaching in</ControlLabel>
-                    <FormControl componentClass="text" placeholder = "My school">
+                    <ControlLabel>Schools I am teaching in</ControlLabel>
+                    <FormControl componentClass="textarea" placeholder = "My school">
                     </FormControl>
                 </FormGroup>
             );
@@ -181,7 +181,6 @@ export default class EditProfile extends Component {
 
 EditProfile.propTypes = {
     fileChooserCallback: PropTypes.func.isRequired,
-    interests : PropTypes.array.isRequired,
-    ImTeaching : PropTypes.array.isRequired,
+    profileData : PropTypes.object,
     sendFormToServer :  PropTypes.func.isRequired
 };

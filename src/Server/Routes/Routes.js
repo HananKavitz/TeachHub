@@ -20,6 +20,16 @@ router.get('/ImTeaching', Verify.verifyOrdinaryUser, function(req,res,next) {
 
 });
 
+router.get('/UserData',Verify.verifyOrdinaryUser, function(req,res,next) {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end(JSON.stringify({
+        interests : interests.interests,
+        ImTeaching : interests.interests
+        })
+    )
+
+});
+
 router.post('/register', function(req,res,next){
     userAccount.register(
         new userAccount({

@@ -6,8 +6,7 @@ export default class EditProfileContainer extends Component {
     constructor(props){
         super(props);
         this.state = {
-            interests: [],
-            ImTeaching : []
+            profileData: {}
         };
 
         this.fileChooserCallback = this.fileChooserCallback.bind(this);
@@ -33,6 +32,15 @@ export default class EditProfileContainer extends Component {
                 console.log(error);
             });
 
+        axiosObj.get('/UserData')
+            .then(function(res){
+                this.setState({
+                    profileData : res.data
+                })
+            }.bind(this))
+            .catch(function(error){
+
+            });
     }
 
 
@@ -47,7 +55,7 @@ export default class EditProfileContainer extends Component {
         let profileForm = {};
         axios.put('/EditProfileData',JSON.stringify(profileForm))
         .then(function(res){
-
+            this.setState({profileData : res.body.profileData});
         })
         .catch(function (error) {
             console.log(error);
@@ -57,8 +65,8 @@ export default class EditProfileContainer extends Component {
 
     render(){
         return (
-            <EditProfile fileChooserCallback = {this.fileChooserCallback} interests = {this.state.interests}
-                ImTeaching = {this.state.ImTeaching} sendFormToServer = {this.sendFormToServer} />
+            <EditProfile fileChooserCallback = {this.fileChooserCallback}
+                profileData = {this.state.profileData} sendFormToServer = {this.sendFormToServer} />
         );
     }
 }
