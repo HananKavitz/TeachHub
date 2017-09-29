@@ -6,10 +6,12 @@ export default class EditProfileContainer extends Component {
     constructor(props){
         super(props);
         this.state = {
-            profileData: {}
+            formData: {}
         };
 
         this.fileChooserCallback = this.fileChooserCallback.bind(this);
+        this.onErrorSubmit = this.onErrorSubmit.bind(this);
+        this.sendFormToServer = this.sendFormToServer.bind(this);
     }
     componentDidMount(){
         const axiosObj = axios.create({
@@ -35,15 +37,28 @@ export default class EditProfileContainer extends Component {
         axiosObj.get('/UserData')
             .then(function(res){
                 this.setState({
-                    profileData : res.data
+                    formData : this.getFormData()
                 })
             }.bind(this))
             .catch(function(error){
 
             });
+            
     }
 
-
+    getFormData(){
+        return {
+            myImage : "./static/images/P1000623.JPG",
+            mySex : "Man",
+            interests : "Math",
+            ImTeaching : "Bible",
+            aboutMe : "nothing special",
+            mySchools : "Jeffersons first",
+            country : "US",
+            gradesITeach : "1st Grade"
+ 
+         }
+     }
     fileChooserCallback(evt){
         let input = document.getElementById('myPrettyFace');
         // need to save image to database here
@@ -51,8 +66,8 @@ export default class EditProfileContainer extends Component {
         input.src="";
     }
 
-    sendFormToServer(){
-        let profileForm = {};
+    sendFormToServer(data){
+        let profileForm = data.dataForm;
         axios.put('/EditProfileData',JSON.stringify(profileForm))
         .then(function(res){
             this.setState({profileData : res.body.profileData});
@@ -62,11 +77,14 @@ export default class EditProfileContainer extends Component {
         });
     }
 
+    onErrorSubmit(error){
+        console.error(error);
+    }
 
     render(){
         return (
-            <EditProfile fileChooserCallback = {this.fileChooserCallback}
-                profileData = {this.state.profileData} sendFormToServer = {this.sendFormToServer} />
+            <EditProfile fileChooserCallback = {this.fileChooserCallback} onErrorSubmit = {this.onErrorSubmit}
+                formData = {this.state.formData} sendFormToServer = {this.sendFormToServer} />
         );
     }
 }
