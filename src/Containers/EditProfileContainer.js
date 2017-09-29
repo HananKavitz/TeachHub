@@ -50,12 +50,12 @@ export default class EditProfileContainer extends Component {
         return {
             myImage : "./static/images/P1000623.JPG",
             mySex : "Man",
-            interests : "Math",
-            ImTeaching : "Bible",
+            interests : ["Math"],
+            ImTeaching : ["Bible"],
             aboutMe : "nothing special",
-            mySchools : "Jeffersons first",
+            mySchools : ["Jeffersons first"],
             country : "US",
-            gradesITeach : "1st Grade"
+            gradesITeach :["1st Grade"]
  
          }
      }

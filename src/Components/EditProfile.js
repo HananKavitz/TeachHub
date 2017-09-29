@@ -14,12 +14,12 @@ export default class EditProfile extends Component {
             properties: {
                 myImage : {type : "string",title : "Your pretty face"},
                 mySex : {type: "string", title: "Gender" , "enum":["Man","Woman"],"default" : "Man"},
-                interests : {type: "string" , title: "Your interests"},
-                ImTeaching : {type: "string" , title: "I am teaching"},
+                interests : {type: "array" , title: "Your interests" , items : {type : "string"}},
+                ImTeaching : {type: "array" , title: "I am teaching" , items : {type : "string"}},
                 aboutMe : {type: "string" , title: "About me"},
-                mySchools : {type: "string" , title: "Schools I'm teaching in"},
+                mySchools : {type: "array" , title: "Schools I'm teaching in" , items : {type : "string"}},
                 country : {type: "string" , title: "My country"},
-                gradesITeach : {type: "string" ,title: "Grades I teach" , default : "First grade"}
+                gradesITeach : {type: "array" ,title: "Grades I teach" , items : {type : "string"}}
             }
         }
 
@@ -48,7 +48,10 @@ export default class EditProfile extends Component {
                 "ui:widget": "select"
             },
             interests:{
-                "ui:widget": "textarea"
+                "ui:options" : {
+                    addable : true,
+                    removable : true
+                }
             },
             ImTeaching:{
                 "ui:widget": "textarea"
