@@ -75,7 +75,7 @@ export default class EditProfileContainer extends Component {
 			headers : {'x-access-token': window.sessionStorage.getItem("authToken")}
         });
         
-        axiosObj.put('/EditProfileData',JSON.stringify(dataForm))
+        axiosObj.put('/User/EditProfileData',JSON.stringify(dataForm))
         .then(function(res){
             //this.setState({formData : res.body.profileData});
         })
