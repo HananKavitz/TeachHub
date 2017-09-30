@@ -67,13 +67,23 @@ export default class EditProfileContainer extends Component {
     }
 
     sendFormToServer(data){
-        let profileForm = data.dataForm;
-        axios.put('/EditProfileData',JSON.stringify(profileForm))
+        let dataForm = data.formData;
+        console.log(dataForm);
+        
+        const axiosObj = axios.create({
+			timeout : 1000,
+			headers : {'x-access-token': window.sessionStorage.getItem("authToken")}
+        });
+        
+        axiosObj.put('/EditProfileData',JSON.stringify(dataForm))
         .then(function(res){
-            this.setState({profileData : res.body.profileData});
+            //this.setState({formData : res.body.profileData});
         })
         .catch(function (error) {
             console.log(error);
+            if (error.status === 500){
+                alert('Failed to edit your profile')
+            }
         });
     }
 
