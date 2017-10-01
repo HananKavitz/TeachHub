@@ -2,6 +2,7 @@ var express = require('express')
 var router = express.Router()
 var interests = require('../../database/Interests');
 var userAccount = require('../../database/Models/userAccount');
+var UserProfile = require('../../database/Models/UserProfile');
 var passport = require('passport');
 var Verify = require('./Verify');
 
@@ -16,6 +17,16 @@ router.get('/interests',Verify.verifyOrdinaryUser, function(req,res,next) {
 router.get('/ImTeaching', Verify.verifyOrdinaryUser, function(req,res,next) {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end(JSON.stringify(interests.interests)
+    )
+
+});
+
+router.get('/UserData',Verify.verifyOrdinaryUser, function(req,res,next) {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end(JSON.stringify({
+        interests : interests.interests,
+        ImTeaching : interests.interests
+        })
     )
 
 });
@@ -77,13 +88,7 @@ router.post('/Logout', function(req,res,next){
     });
 });
 
-router.put('/EditProfileData',Verify.verifyOrdinaryUser,function(req,res,next) {
 
-    console.log(req.body);
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end("Profile data edited");
-
-});
 
 router.get('/',function(req,res,next) {
 

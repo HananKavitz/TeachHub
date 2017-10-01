@@ -8,6 +8,7 @@ var cookieParser = require('cookie-parser');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongoose = require('mongoose');
+var ProfileRoutes = require('./Routes/ProfileRoutes');
 var backEndConfig = require('../Config/BackEndConfig');
 var hostname = backEndConfig.serverURL;
 
@@ -36,7 +37,7 @@ passport.deserializeUser(userAccount.deserializeUser());
 
 app.use(express.static(path.join(__dirname, '../../build')));
 app.use('/', router);
-
+app.use('/User/',ProfileRoutes);
 // mongoose
 mongoose.connect('mongodb://' + backEndConfig.mongodbURL+ '/' + backEndConfig.mongodbPort + '/TeachhubDataBase');
 

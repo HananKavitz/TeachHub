@@ -16,14 +16,14 @@
     align-content: center;
     height: 40px;
     width: 40px;
-    z-index: 2;
+    z-index: 2147483647;
     right: 20px;
     bottom: 20px;
     background: lightblue;
     color: black;
     border-radius: 100%;
     font-size: 34px;
-    font-align: center;
+    text-align: center;
     text-decoration: none;
     line-height: 50px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.5);

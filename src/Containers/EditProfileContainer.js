@@ -6,11 +6,12 @@ export default class EditProfileContainer extends Component {
     constructor(props){
         super(props);
         this.state = {
-            interests: [],
-            ImTeaching : []
+            formData: {}
         };
 
         this.fileChooserCallback = this.fileChooserCallback.bind(this);
+        this.onErrorSubmit = this.onErrorSubmit.bind(this);
+        this.sendFormToServer = this.sendFormToServer.bind(this);
     }
     componentDidMount(){
         const axiosObj = axios.create({
@@ -33,9 +34,31 @@ export default class EditProfileContainer extends Component {
                 console.log(error);
             });
 
+        axiosObj.get('/UserData')
+            .then(function(res){
+                this.setState({
+                    formData : this.getFormData()
+                })
+            }.bind(this))
+            .catch(function(error){
+
+            });
+            
     }
 
-
+    getFormData(){
+        return {
+            myImage : "./static/images/P1000623.JPG",
+            mySex : "Man",
+            interests : ["Math"],
+            ImTeaching : ["Bible"],
+            aboutMe : "nothing special",
+            mySchools : ["Jeffersons first"],
+            myCountry : "US",
+            gradesITeach :["1st Grade"]
+ 
+         }
+     }
     fileChooserCallback(evt){
         let input = document.getElementById('myPrettyFace');
         // need to save image to database here
@@ -43,22 +66,35 @@ export default class EditProfileContainer extends Component {
         input.src="";
     }
 
-    sendFormToServer(){
-        let profileForm = {};
-        axios.put('/EditProfileData',JSON.stringify(profileForm))
+    sendFormToServer(data){
+        let dataForm = data.formData;
+        console.log(dataForm);
+        
+        const axiosObj = axios.create({
+			timeout : 1000,
+			headers : {'x-access-token': window.sessionStorage.getItem("authToken")}
+        });
+        
+        axiosObj.put('/User/EditProfileData',JSON.stringify(dataForm))
         .then(function(res){
-
+            //this.setState({formData : res.body.profileData});
         })
         .catch(function (error) {
             console.log(error);
+            if (error.status === 500){
+                alert('Failed to edit your profile')
+            }
         });
     }
 
+    onErrorSubmit(error){
+        console.error(error);
+    }
 
     render(){
         return (
-            <EditProfile fileChooserCallback = {this.fileChooserCallback} interests = {this.state.interests}
-                ImTeaching = {this.state.ImTeaching} sendFormToServer = {this.sendFormToServer} />
+            <EditProfile fileChooserCallback = {this.fileChooserCallback} onErrorSubmit = {this.onErrorSubmit}
+                formData = {this.state.formData} sendFormToServer = {this.sendFormToServer} />
         );
     }
 }

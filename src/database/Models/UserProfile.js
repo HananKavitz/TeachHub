@@ -14,7 +14,7 @@ var userProfile = new Schema({
 	mySex : {type : String , enum : sexs},
 	//personalScore : {type : Number , default : 1}, //This needs to =be calculable
 	myCountry :{type: String,required:true},
-	classesITeach : [String]
+	gradesITeach : [String]
 
 	
 
