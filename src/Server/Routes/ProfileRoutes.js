@@ -3,11 +3,15 @@ var router = express.Router()
 var userAccount = require('../../database/Models/userAccount');
 var UserProfile = require('../../database/Models/UserProfile');
 var Verify = require('./Verify');
-
+var jwt = require('jsonwebtoken');
 
 router.put('/EditProfileData',Verify.verifyOrdinaryUser,function(req,res,next) {
     console.log(req.body);
     const message = req.body;
+    
+    const token = req.body.token || req.query.token || req.headers['x-access-token'];
+    const decodedUser = jwt.decode(token, {complete: true});
+
     UserProfile.findById(id , function(err,userProfile){
         if (err){
             res.sendStatus(500).
