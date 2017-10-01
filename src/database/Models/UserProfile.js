@@ -7,8 +7,6 @@ var userProfile = new Schema({
 	profileImage: String,//need to be path to images db
 	interests : [String],
 	ImTeaching : [String],
-	createdTeachingAids : [Schema.Types.ObjectId],
-	updatedTeachingAids : [Schema.Types.ObjectId],
 	aboutMe : String,
 	mySchools : [String],
 	mySex : {type : String , enum : sexs},
@@ -18,7 +16,11 @@ var userProfile = new Schema({
 
 	
 
-});
+	},
+	{
+		timestamps : true
+}
+);
 
 
 module.exports = mongoose.model('UserProfile', userProfile);

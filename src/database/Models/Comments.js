@@ -5,8 +5,8 @@ var comment = new Schema({
     commentTitle : {type: String , required:true},
 	commentText : {type: String , required:true},
     commentCreator : {type: String , required:true},
-    likes : Number,
-	createdOn : {type : Date , default : Date.now}
-});
+    likes : Number},
+    {timestamps : true}
+);
 
 module.exports = mongoose.model('Comment', comment);

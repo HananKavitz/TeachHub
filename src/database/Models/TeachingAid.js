@@ -9,16 +9,22 @@ var teachingAid = new Schema({
 	description : String,
 	rating : {type: Number,min : 0,max : 5},
 	likes : Number,
-	comments : [Schema.Types.ObjectId],
-	createdOn :   {type : Date,default : Date.now},
-	lastUpdated : {type : Date,default : Date.now},
-	creator : {type : Schema.Types.ObjectId, required:true},
-	editors : [Schema.Types.ObjectId],
+	comments : [{type : Schema.Types.ObjectId,
+					ref : 'Comments'
+	}],
+	creator : {type : Schema.Types.ObjectId, 
+				required:true,
+				ref : 'UserProfile'
+	},
+	editors : [{type : Schema.Types.ObjectId,
+				ref : 'UserProfile'
+	}],
 	tags : [String],
 	version: [String],
 	language : String,
 	forClasses : [String]
-
+	},
+	{timestamps:true
 
 });
 
