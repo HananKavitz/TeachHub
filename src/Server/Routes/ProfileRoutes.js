@@ -12,14 +12,13 @@ router.put('/EditProfileData',Verify.verifyOrdinaryUser,function(req,res,next) {
     const token = req.body.token || req.query.token || req.headers['x-access-token'];
     const decodedUser = jwt.decode(token, {complete: true});
 
-    UserProfile.findById(id , function(err,userProfile){
+    UserProfile.findById(decodedUser._id , function(err,userProfile){
         if (err){
             res.sendStatus(500).
             json({status: 'Failed to update user profile'});
         }
-
         if (!userProfile){
-            userProfile = new UserProfile;// create new user profile
+            var newUserProfile = new UserProfile;// create new user profile     
         }
     })
 
@@ -30,7 +29,7 @@ router.put('/EditProfileData',Verify.verifyOrdinaryUser,function(req,res,next) {
     userProfile.mySchools = message.mySchools;
     userProfile.myCountry = message.myCountry;
     userProfile.gradesITeach = message.gradesITeach;
-
+    console.log(userProfile)
     userAccount.save(function(err){
         console.log(err);
         next(err);

@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 var sexs = ['Man','Woman'];
 
 var userProfile = new Schema({
-    username: {type:String,required:true},
+    username: {type : Schema.Types.ObjectId, ref : 'userAcount'},
 	profileImage: String,//need to be path to images db
 	interests : [String],
 	ImTeaching : [String],
