@@ -13,7 +13,7 @@ var userProfile = new Schema({
 	mySchools : [String],
 	mySex : {type : String , enum : sexs},
 	//personalScore : {type : Number , default : 1}, //This needs to =be calculable
-	country :{type: String,required:true},
+	myCountry :{type: String,required:true},
 	classesITeach : [String]
 
 	
