@@ -20,9 +20,9 @@ var teachingAid = new Schema({
 				ref : 'UserProfile'
 	}],
 	tags : [String],
-	version: [String],
+	version : [String],
 	language : String,
-	forClasses : [String]
+	forGrades : [String]
 	},
 	{timestamps:true
 

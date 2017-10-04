@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 //import TeachingAidsComponent from '../Components/TeachingAids';
 import UnderConstruction from '../Components/UnderConstruction';
-class TeachingAids extends Component {
+import {Button} from 'react-bootstrap';
+import {Link} from 'react-router';
+class TeachingAidsContainer extends Component {
 
     // constructor(props) {
     //     super(props);
@@ -11,6 +13,12 @@ class TeachingAids extends Component {
 
 
     render() {
+        // need to be loged in to create new teaching aids
+        const newTeachingAidButton = this.props.isLogedIn ?
+        <Link to = {'NewTeachingAid'}>
+            <Button bsStyle="primary">New teaching aid</Button>
+        </Link>:null;
+        
         return (
             <div className="container">
 
@@ -19,6 +27,7 @@ class TeachingAids extends Component {
                         <h2>
                             Teaching Aids
                         </h2>
+                        {newTeachingAidButton}
                         < UnderConstruction />
                     </div>
                 </div>
@@ -28,4 +37,4 @@ class TeachingAids extends Component {
     }
 }
 
-export default TeachingAids;
+export default TeachingAidsContainer;
