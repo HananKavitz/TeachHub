@@ -48,8 +48,8 @@ class PasswordRestore extends Component {
         };
 
         return (
-            <div className="App">
-                <div className="App-header">
+            <div className="container">
+                <div className="row row-content">
 
                     <div className="col-sm-6 col-xs-12">
                         <Form

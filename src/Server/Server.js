@@ -37,7 +37,7 @@ passport.deserializeUser(userAccount.deserializeUser());
 
 app.use(express.static(path.join(__dirname, '../../build')));
 app.use('/', router);
-app.use('/User/',ProfileRoutes);
+app.use('/User',ProfileRoutes);
 // mongoose
 mongoose.connect('mongodb://' + backEndConfig.mongodbURL+ '/' + backEndConfig.mongodbPort + '/TeachhubDataBase');
 
