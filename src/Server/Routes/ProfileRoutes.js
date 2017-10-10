@@ -5,7 +5,7 @@ var UserProfile = require('../../database/Models/UserProfile');
 var Verify = require('./Verify');
 var jwt = require('jsonwebtoken');
 
-router.put('/EditProfileData',Verify.verifyOrdinaryUser,function(req,res,next) {
+router.put('/ProfileData',Verify.verifyOrdinaryUser,function(req,res,next) {
     
     console.log(req.body);
     const message = JSON.parse(req.body);
