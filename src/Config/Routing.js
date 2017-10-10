@@ -10,6 +10,8 @@ import Login from '../Components/Login';
 import Signin from '../Containers/SignContainer';
 import PasswordRestore from '../Components/PasswordRestore';
 import TeachingAids from '../Containers/TeachingAids';
+import LoadTeachingAids from '../Containers/LoadTeachingAids';
+
 import Teachers from '../Components/Teachers';
 
 const Routing = (
@@ -23,6 +25,7 @@ const Routing = (
             <Route path='Signin'  component={Signin} />
             <Route path='PasswordRestore'  component={PasswordRestore} />
             <Route path='TeachingAids'  component={TeachingAids} />
+            <Route path='LoadTeachingAids'  component={LoadTeachingAids} />
             <Route path='Teachers'  component={Teachers} />
         </Route>
     </Router>

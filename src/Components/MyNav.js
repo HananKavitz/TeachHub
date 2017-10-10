@@ -50,7 +50,7 @@ export default class MyNav extends Component {
                                     </Link>
                                 </NavItem>
                                 <NavItem eventKey={eventKey++}>
-                                    <Link to={'TeachingAids'}>
+                                    <Link to={'LoadTeachingAids'}>
                                         Teaching Aids
                                     </Link>
                                 </NavItem>
