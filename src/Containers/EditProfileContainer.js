@@ -18,21 +18,7 @@ export default class EditProfileContainer extends Component {
 			timeout : 1000,
 			headers : {'x-access-token': window.sessionStorage.getItem("authToken")}
 		});
-        axiosObj.get('/interests')
-            .then(function (response) {
-                this.setState({interests:  response.data});
-            }.bind(this))
-            .catch(function (error) {
-                console.log(error);
-            });
-
-        axiosObj.get('/ImTeaching')
-            .then(function (response) {
-                this.setState({ImTeaching:  response.data});
-            }.bind(this))
-            .catch(function (error) {
-                console.log(error);
-            });
+       
 
         axiosObj.get('/UserData')
             .then(function(res){
@@ -75,10 +61,13 @@ export default class EditProfileContainer extends Component {
 			headers : {'x-access-token': window.sessionStorage.getItem("authToken")}
         });
         
-        axiosObj.put('/User/ProfileData',JSON.stringify(dataForm))
+        axiosObj.put('/User/ProfileData',dataForm)
         .then(function(res){
             //this.setState({formData : res.body.profileData});
-        })
+            console.log('Profile updated');
+
+            this.props.router.push('/Home');// go to Home page
+        }.bind(this))
         .catch(function (error) {
             console.log(error);
             if (error.status === 500){
