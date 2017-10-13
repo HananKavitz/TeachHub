@@ -20,8 +20,9 @@ export default class EditProfileContainer extends Component {
 		});
        
 
-        axiosObj.get('/UserData')
+        axiosObj.get('/User/ProfileData')
             .then(function(res){
+                console.log(res);
                 this.setState({
                     formData : this.getFormData()
                 })

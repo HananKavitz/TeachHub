@@ -50,14 +50,15 @@ router.put('/ProfileData',Verify.verifyOrdinaryUser,function(req,res,next) {
 router.get('/ProfileData',Verify.verifyOrdinaryUser,function(req,res,next){
     const token = req.headers['x-access-token'];
     const decodedUser = jwt.decode(token, {complete: true});
-    UserProfile.findById(decodedUser._id , function(err,userProfile){
+    
+    UserProfile.findById(decodedUser.payload._id , function(err,userProfile){
         if (err){
             res.sendStatus(500).
             json({status: 'Failed to get user profile'});
         }
         //send the user to the client
-        res.sendStatus(200).
-        json({userProfile: JSON.stringify(userProfile)});
+        res.status(200).
+        json({userProfile: userProfile});
     })
 });
 
