@@ -7,7 +7,7 @@ export default class NewTeachingAid extends Component {
     constructor(props){
         super(props);
         
-        this.state = {tags : [{}]};
+        this.state = {tags : []};
         
 
         //mothods bindings
@@ -68,6 +68,15 @@ export default class NewTeachingAid extends Component {
                                             }}/>
                             )
                 }
+            },
+            description : {
+                "ui:widget" : "textarea"
+            },
+            forGrades:{
+                "ui:options" : {
+                    addable : true,
+                    removable : true
+                }
             }
         };
 
@@ -86,14 +95,27 @@ export default class NewTeachingAid extends Component {
                     title: "Subject",
                     default: ""
                 },
-                forgotPassword: {
-                    type: "string",
-                    title: "Description",
-                    default: ""
+                description: {
+                    type : "string",
+                    title : "Description"
                 },
                 tags: {
                     type: "string",
                     title: "Tags"
+                },
+                version: {
+                    type: "string",
+                    title: "Version",
+                    default:"1.0.0"
+                },
+                language : {
+                    type : "string",
+                    title : "Language"
+                },
+                forGrades : {
+                    type : "array",
+                    title : "Suitable for grades",
+                    items : {type : "string"}
                 }
 
             }
