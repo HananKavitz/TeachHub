@@ -99,6 +99,14 @@ export default class NewTeachingAid extends Component {
                     type : "string",
                     title : "Description"
                 },
+                files: {
+                    type: "array",
+                    title: "Share your teaching aid",
+                    items: {
+                      type: "string",
+                      format: "data-url"
+                    }
+                },
                 tags: {
                     type: "string",
                     title: "Tags"
@@ -117,7 +125,6 @@ export default class NewTeachingAid extends Component {
                     title : "Suitable for grades",
                     items : {type : "string"}
                 }
-
             }
         };
         return (
