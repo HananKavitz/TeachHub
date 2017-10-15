@@ -3,6 +3,8 @@ import UnderConstruction from './UnderConstruction';
 import Form from "react-jsonschema-form";
 import { WithContext as ReactTags } from 'react-tag-input';
 
+
+
 export default class NewTeachingAid extends Component {
     constructor(props){
         super(props);
@@ -11,21 +13,12 @@ export default class NewTeachingAid extends Component {
         
 
         //mothods bindings
-        this.createNewteachingAid = this.createNewteachingAid.bind(this);
-        this.onErrorSubmit = this.onErrorSubmit.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.handleAddition = this.handleAddition.bind(this);
         this.handleDrag = this.handleDrag.bind(this);
     }
 
-    createNewteachingAid(form){
-        
-    }
-
-    onErrorSubmit(err){
-        console.error(err);
-    }
-
+    
     handleDelete(i) {
         let tags = this.state.tags;
         tags.splice(i, 1);
@@ -51,7 +44,6 @@ export default class NewTeachingAid extends Component {
         // re-render
         this.setState({ tags: tags });
     }
-
     render() {
 
         const newTeachinAidiUiSchema = {
@@ -136,8 +128,8 @@ export default class NewTeachingAid extends Component {
                         <Form
                             schema={newTeachinAidSchema}
                             uiSchema={newTeachinAidiUiSchema}
-                            onSubmit={this.createNewteachingAid}
-                            onError={this.onErrorSubmit}>
+                            onSubmit={this.props.createNewteachingAid}
+                            onError={this.props.onErrorSubmit}>
                         </Form>
                         <UnderConstruction/>
                     </div>
