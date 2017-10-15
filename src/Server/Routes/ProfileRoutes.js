@@ -1,26 +1,33 @@
 var express = require('express')
 var router = express.Router()
-var userAccount = require('../../database/Models/userAccount');
+var UserAccount = require('../../database/Models/userAccount');
 var UserProfile = require('../../database/Models/UserProfile');
 var Verify = require('./Verify');
 var jwt = require('jsonwebtoken');
 
-router.put('/ProfileData',Verify.verifyOrdinaryUser,function(req,res,next) {
+router.post('/ProfileData',Verify.verifyOrdinaryUser,function(req,res,next) {
     
     const message = req.body;
     
     const token = req.headers['x-access-token'];
     const decodedUser = jwt.decode(token, {complete: true});
 
-    UserProfile.findById(decodedUser.payload._id , function(err,userProfile){
+    UserAccount.findById(decodedUser.payload._id , function(err,userAccount){
         if (err){
-            res.sendStatus(500).
+            //some error with database
+            res.status(500).
             json({status: 'Failed to update user profile'});
+            return
         }
-        if (!userProfile){
+        if (!userAccount){
             // user doesn't exist yet
-            userProfile = new UserProfile;
+            res.status(500).
+            json({status: 'User doesn\'t exist'});
+            return
         }
+
+        let userProfile = new UserProfile;
+        userProfile.userID = userAccount._id;
         userProfile.mySex = message.mySex;
         userProfile.interests = message.interests;
         userProfile.ImTeaching = message.ImTeaching;
@@ -40,21 +47,17 @@ router.put('/ProfileData',Verify.verifyOrdinaryUser,function(req,res,next) {
     json({status: 'User profile saved'});
     })
 
-    
-    
-
-    
-
 });
 
 router.get('/ProfileData',Verify.verifyOrdinaryUser,function(req,res,next){
     const token = req.headers['x-access-token'];
-    const decodedUser = jwt.decode(token, {complete: true});
+    const decodedAccount = jwt.decode(token, {complete: true});
     
-    UserProfile.findById(decodedUser.payload._id , function(err,userProfile){
+    UserAccount.findById(decodedAccount.payload._id , function(err,userProfile){
         if (err){
-            res.sendStatus(500).
+            res.status(500).
             json({status: 'Failed to get user profile'});
+            return
         }
         //send the user to the client
         res.status(200).

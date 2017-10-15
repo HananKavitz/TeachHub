@@ -3,15 +3,15 @@ var Schema = mongoose.Schema;
 var sexs = ['Man','Woman'];
 
 var userProfile = new Schema({
-    username: {type : Schema.Types.ObjectId, ref : 'userAcount'},
-	profileImage: String,//need to be path to images db
+    userID: {type : Schema.Types.ObjectId, ref : 'userAccount'},
+	profileImage: {type: String , default : ''},//need to be path to images db
 	interests : [String],
 	ImTeaching : [String],
 	aboutMe : String,
 	mySchools : [String],
 	mySex : {type : String , enum : sexs},
 	//personalScore : {type : Number , default : 1}, //This needs to =be calculable
-	myCountry :{type: String,required:true},
+	myCountry :{type: String},
 	gradesITeach : [String]
 
 	
