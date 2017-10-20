@@ -26,26 +26,35 @@ router.post('/ProfileData',Verify.verifyOrdinaryUser,function(req,res,next) {
             return
         }
 
-        let userProfile = new UserProfile;
-        userProfile.userID = userAccount._id;
-        userProfile.mySex = message.mySex;
-        userProfile.interests = message.interests;
-        userProfile.ImTeaching = message.ImTeaching;
-        userProfile.aboutMe = message.aboutMe;
-        userProfile.mySchools = message.mySchools;
-        userProfile.myCountry = message.myCountry;
-        userProfile.gradesITeach = message.gradesITeach;
-        console.log(userProfile);
+        UserProfile.findOne({userID:userAccount._id},function (err,userProfile){
+            if (err){
+                //some error with database
+                res.status(500).
+                json({status: 'Failed to update user profile'});
+                return
+            }
+            if (!userProfile){
+                let userProfile = new UserProfile;
+            }
+            userProfile.userID = userAccount._id;
+            userProfile.mySex = message.mySex;
+            userProfile.interests = message.interests;
+            userProfile.ImTeaching = message.ImTeaching;
+            userProfile.aboutMe = message.aboutMe;
+            userProfile.mySchools = message.mySchools;
+            userProfile.myCountry = message.myCountry;
+            userProfile.gradesITeach = message.gradesITeach;
+            console.log(userProfile);
+    
+            userProfile.save(function(error){
+                console.log(error);
+                next(error);
+            });
+        })
 
-        userProfile.save(function(error){
-            console.log(error);
-            next(error);
-        });
-
-
+    })  
     res.status(200).
     json({status: 'User profile saved'});
-    })
 
 });
 
@@ -53,7 +62,7 @@ router.get('/ProfileData',Verify.verifyOrdinaryUser,function(req,res,next){
     const token = req.headers['x-access-token'];
     const decodedAccount = jwt.decode(token, {complete: true});
     
-    UserAccount.findById(decodedAccount.payload._id , function(err,userProfile){
+    UserProfile.findOne({userID : decodedAccount.payload._id} , function(err,userProfile){
         if (err){
             res.status(500).
             json({status: 'Failed to get user profile'});
