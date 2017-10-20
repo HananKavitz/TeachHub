@@ -73,7 +73,7 @@ export default class NewTeachingAid extends Component {
         };
 
         const newTeachinAidSchema = {
-            title: "Log in",
+            title: "",
             type: "object",
             required: ["title"],
             properties: {
