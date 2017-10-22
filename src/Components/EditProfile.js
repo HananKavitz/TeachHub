@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Image, FormGroup, FormControl} from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import Form from "react-jsonschema-form";
+import ImageChooser from './ImageChooser';
 
 export default class EditProfile extends Component {
 
@@ -31,18 +32,11 @@ export default class EditProfile extends Component {
             myImage : {
                 "ui:widget": (props) => {
                     const imagePath = props.value ? props.value : "./static/images/avatar_placeholder-9a2f53db6270aa02b5ae2c5af1ffc72b.svg";
+                    
                     return ( 
-                    <div>
-                        <Image id ="myPrettyFace" src= {imagePath} responsive/>
-                        <FormGroup id="formControlsFile">
-                            <br/>
-                            <FormControl type="file" accept=".jpg, .jpeg, .png"
-                                        id="image_uploads"
-                                        onChange = {props.fileChooserCallback}/>
-                        </FormGroup>
-    
-                    </div>)
-                }
+                    <ImageChooser imagePath = {imagePath} fileChooserCallback = {this.props.fileChooserCallback} />
+
+                    )}
             },
             mySex:{
                 "ui:widget": "select"

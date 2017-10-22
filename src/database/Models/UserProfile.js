@@ -4,7 +4,7 @@ var sexs = ['Man','Woman'];
 
 var userProfile = new Schema({
     userID: {type : Schema.Types.ObjectId, ref : 'userAccount'},
-	profileImage: {type: String , default : ''},//need to be path to images db
+	profileImage: {type: Buffer},
 	interests : [String],
 	ImTeaching : [String],
 	aboutMe : String,

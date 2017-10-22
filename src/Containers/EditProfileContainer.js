@@ -22,7 +22,7 @@ export default class EditProfileContainer extends Component {
 
         axiosObj.get('/User/ProfileData')
             .then(function(res){
-                console.log(res);
+                //console.log(res);
                 let userProfile = res.data.userProfile;
 
                 this.setState({
@@ -35,24 +35,13 @@ export default class EditProfileContainer extends Component {
             
     }
 
-    // getFormData(){
-    //     return {
-    //         myImage : "./static/images/P1000623.JPG",
-    //         mySex : "Man",
-    //         interests : ["Math"],
-    //         ImTeaching : ["Bible"],
-    //         aboutMe : "nothing special",
-    //         myScgetFormDatahools : ["Jeffersons first"],
-    //         myCountry : "US",
-    //         gradesITeach :["1st Grade"]
- 
-    //      }
-    //  }
+
     fileChooserCallback(evt){
         let input = document.getElementById('myPrettyFace');
+        let file = document.getElementById('image_uploads');
         // need to save image to database here
-        console.log(input);
-        input.src="";
+        console.log(input,file,evt);
+        input.src = "";
     }
 
     sendFormToServer(data){
