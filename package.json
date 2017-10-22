@@ -12,6 +12,7 @@
     "express-session": "^1.15.5",
     "font-awesome": "^4.7.0",
     "jsonwebtoken": "^8.0.1",
+    "limits": "0.0.7",
     "loadash": "^1.0.0",
     "material-ui": "^0.19.2",
     "mongoose": "^4.11.10",
