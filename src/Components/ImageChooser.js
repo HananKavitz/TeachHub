@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {Image, FormControl, FormGroup} from 'react-bootstrap';
 import PropTypes from 'prop-types';
 

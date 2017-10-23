@@ -103,11 +103,6 @@ export default class NewTeachingAid extends Component {
                     type: "string",
                     title: "Tags"
                 },
-                version: {
-                    type: "string",
-                    title: "Version",
-                    default:"1.0.0"
-                },
                 language : {
                     type : "string",
                     title : "Language"

@@ -12,7 +12,7 @@ export default class NewTeachingAidContainer extends Component {
         //mothods bindings
         this.createNewteachingAid = this.createNewteachingAid.bind(this);
         this.onErrorSubmit = this.onErrorSubmit.bind(this);
-        this.getFormData = this.getFormData.bind(this);
+        
     }
 
     createNewteachingAid(form){
@@ -24,17 +24,13 @@ export default class NewTeachingAidContainer extends Component {
         axiosObj.post('/teachingAids/New')
         .then(function(res){
             console.log(res);
-            this.setState({
-                formData : this.getFormData()
-            })
+            
         }.bind(this))
         .catch(function(error){
 
         });
     }
-    getFormData(){
-
-    }
+    
     onErrorSubmit(err){
         console.error(err);
     }
@@ -43,7 +39,7 @@ export default class NewTeachingAidContainer extends Component {
 
     return (
         <NewTeachingAid onErrorSubmit = {this.onErrorSubmit}
-        onSubmit = {this.createNewteachingAid} formData = {this.getFormData()} />
+        onSubmit = {this.createNewteachingAid}  />
     )
    }
 }
