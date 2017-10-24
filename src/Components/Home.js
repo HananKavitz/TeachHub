@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
-import MyDataBox from './MyDataBox'
+import MyDataBox from './MyDataBox';
+import UnderConstruction from './UnderConstruction';
+import {Button} from 'react-bootstrap';
+import {Link} from 'react-router';
 
 export default class Home extends Component {
 
   render(){
+    // need to be loged in to create new teaching aids
+      const newTeachingAidButton = this.props.isLogedIn ?
+      <Link to = {'NewTeachingAid'}>
+          <Button bsStyle="primary">New teaching aid</Button>
+      </Link>:null;
 
 var myData = {
   mytitle :"my title",
@@ -13,8 +21,12 @@ var myData = {
 
     return (
 
-
         <div className="container">
+          <div className="row">
+              <div className="col-md-4 offset-sm-8">
+                  {newTeachingAidButton}
+              </div>
+          </div>
 
             <div className="row row-content">
                 <div className="col-sm-6 col-xs-12">
@@ -36,7 +48,7 @@ var myData = {
                 </div>
                 <div className="col-sm-6 col-xs-12">
 
-                      <MyDataBox mytitle = {myData.mytitle} mycontent = {myData.mycontent} href={myData.href}/>
+                  <MyDataBox mytitle = {myData.mytitle} mycontent = {myData.mycontent} href={myData.href}/>
 
                 </div>
             </div>
