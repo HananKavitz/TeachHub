@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import UnderConstruction from './UnderConstruction';
 
 
-export default class About extends Component {
+export default class TermsOfUse extends Component {
 
     render(){
 
@@ -13,7 +13,7 @@ export default class About extends Component {
                 <div className="row row-content">
                     <div className="col-xs-12">
                         <h2>
-                            About
+                            Some one (a lawyer probably) will have to think about this stuff
                         </h2>
                         <UnderConstruction />
                     </div>

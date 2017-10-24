@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 //import {Image, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 import Form from "react-jsonschema-form";
 import {signinSchema,signinUiSchema} from '../Schemas/signinSchema';
+import PropTypes from 'prop-types';
 
-class Sign extends Component {
+export default class Sign extends Component {
 
     render() {
 
@@ -186,4 +187,7 @@ class Sign extends Component {
     }
 }
 
-export default Sign;
+Sign.propTypes = {
+    signinCallback: PropTypes.func.isRequired,
+    onErrorSubmit :  PropTypes.func.isRequired
+};

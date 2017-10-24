@@ -1,34 +1,39 @@
 import React, {Component} from 'react';
 import Sign from '../Components/Sign';
-import EditProfile from '../Components/EditProfile';
+import EditProfileContainer from './EditProfileContainer';
 import axios from 'axios';
+import UserAlreadyExist from '../Components/UserAlreadyExist';
 
 class SignContainer extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            isSigned: false
+            isRegistered: false,
+            userAlreadyExist: false
         };
-        this.signinCallback = this.signinCallback.bind(this);
-        this.onErrorSubmit = this.onErrorSubmit.bind(this);
 
+        //methods on this object
+        this.registerCallback = this.registerCallback.bind(this);
+        this.onErrorSubmit = this.onErrorSubmit.bind(this);
+        this.toggleUserExist = this.toggleUserExist.bind(this);
     }
 
 
 
-    signinCallback(type) {
+    registerCallback(type) {
 
         // we are sending secret password here!!! not good
-        axios.post('/signin',type.formData)
+        axios.post('/register',type.formData)
             .then(function (res) {
                 console.log(res);
-                console.log(this);
-                this.setState({isSigned : true});
+                this.setState({isRegistered : true});
+
             }.bind(this))
             .catch(function (error) {
-                console.log(error);
-            });
+                console.error(error);
+                this.setState({userAlreadyExist : true})
+            }.bind(this));
 
     }
 
@@ -36,10 +41,16 @@ class SignContainer extends Component {
         console.error(err);
     }
 
-    render() {
-        let sign = this.state.isSigned ? <EditProfile />:
-            <Sign signinCallback = {this.signinCallback} onErrorSubmit = {this.onErrorSubmit}/>;
+    toggleUserExist(){
+        this.setState({userAlreadyExist : false});
+    }
 
+    render() {
+
+        let sign = this.state.isRegistered ? <EditProfileContainer />:
+            <Sign signinCallback = {this.registerCallback} onErrorSubmit = {this.onErrorSubmit} />;
+
+        sign = this.state.userAlreadyExist ? <UserAlreadyExist toggleUserExist = {this.toggleUserExist}/> : sign;
 
         return (
             sign

@@ -1,18 +1,48 @@
 import React, { Component } from 'react';
+import {Modal,Button} from 'react-bootstrap';
+import {Link} from 'react-router';
 
+export default class Logout extends Component {
+    constructor(props){
+        super(props);
+        this.closeCallback = this.closeCallback.bind(this);
+    }
 
-class Logout extends Component {
-    render() {
+    closeCallback(){
+		window.sessionStorage.removeItem('userName');
+		window.sessionStorage.removeItem('authToken');
+        this.props.route.updateLoginCallback(false,'');
+    };
+
+    render(){
         return (
-            <div className="App">
-                <div className="App-header">
 
-                    <h2>Logout page</h2>
-                </div>
+			< div className = "static-modal" >
+				<Modal.Dialog>
+					<Modal.Header>
+						<Modal.Title>Logout</Modal.Title>
+					</Modal.Header>
 
-            </div>
-        );
+					<Modal.Body>
+						Are you sure you want to logout?
+					</Modal.Body>
+
+					<Modal.Footer>
+						<Link to={'Home'}>
+							<Button bsStyle="primary" onClick = {this.closeCallback}>
+								Log out
+							</Button>
+						</Link>
+
+						<Link to={'Home'}>
+							<Button data-dismiss="modal">
+								Cancel
+							</Button>
+						</Link>
+					</Modal.Footer>
+
+				</Modal.Dialog>
+			< /div>
+        )
     }
 }
-
-export default Logout;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import UnderConstruction from './UnderConstruction';
 
 
 export default class Teachers extends Component {
@@ -15,6 +15,7 @@ export default class Teachers extends Component {
                         <h2>
                             Our teachers
                         </h2>
+                        <UnderConstruction />
                     </div>
                 </div>
             </div>
