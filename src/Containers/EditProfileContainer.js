@@ -43,7 +43,7 @@ export default class EditProfileContainer extends Component {
             .catch(function(error){
 
             });
-            
+
     }
 
     getFormData(){
@@ -56,7 +56,7 @@ export default class EditProfileContainer extends Component {
             mySchools : ["Jeffersons first"],
             myCountry : "US",
             gradesITeach :["1st Grade"]
- 
+
          }
      }
     fileChooserCallback(evt){
@@ -69,12 +69,12 @@ export default class EditProfileContainer extends Component {
     sendFormToServer(data){
         let dataForm = data.formData;
         console.log(dataForm);
-        
+
         const axiosObj = axios.create({
 			timeout : 1000,
 			headers : {'x-access-token': window.sessionStorage.getItem("authToken")}
         });
-        
+
         axiosObj.put('/User/ProfileData',JSON.stringify(dataForm))
         .then(function(res){
             //this.setState({formData : res.body.profileData});

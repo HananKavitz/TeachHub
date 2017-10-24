@@ -12,7 +12,7 @@ var teachingAid = new Schema({
 	comments : [{type : Schema.Types.ObjectId,
 					ref : 'Comments'
 	}],
-	creator : {type : Schema.Types.ObjectId, 
+	creator : {type : Schema.Types.ObjectId,
 				required:true,
 				ref : 'UserProfile'
 	},

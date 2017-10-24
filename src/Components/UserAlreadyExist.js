@@ -1,43 +1,41 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {Modal,Button} from 'react-bootstrap';
 import {Link} from 'react-router';
 import PropTypes from 'prop-types';
 
-export default class UserAlreadyExist extends Component {
+const UserAlreadyExist = (props) => {
+	return (
+		<div className = "static-modal" >
+			<Modal.Dialog>
+				<Modal.Header>
+					<Modal.Title>Bad username</Modal.Title>
+				</Modal.Header>
 
-	render() {
+				<Modal.Body>
+					This username already exist
+				</Modal.Body>
 
-		return (
-			< div className = "static-modal" >
-				<Modal.Dialog>
-					<Modal.Header>
-						<Modal.Title>Bad username</Modal.Title>
-					</Modal.Header>
+				<Modal.Footer>
+					<Link to={'Signin'}>
+						<Button bsStyle="primary" onClick = {props.toggleUserExist} style = {{padding : 5}}>
+							Back to registeration
+						</Button>
+					</Link>
 
-					<Modal.Body>
-						This username already exist
-					</Modal.Body>
+					<Link to={'home'}>
+						<Button onClick = {props.toggleUserExist}>
+							cancel
+						</Button>
+					</Link>
+				</Modal.Footer>
 
-					<Modal.Footer>
-						<Link to={'Signin'}>
-							<Button bsStyle="primary" onClick = {this.props.toggleUserExist}>
-								Back to login
-							</Button>
-						</Link>
+			</Modal.Dialog>
+		</div>
+	);
 
-						<Link to={'home'}>
-							<Button onClick = {this.props.toggleUserExist}>
-								cancel
-							</Button>
-						</Link>
-					</Modal.Footer>
-
-				</Modal.Dialog>
-			< /div>
-		);
-
-    }
+    
 }
+export default UserAlreadyExist;
 
 UserAlreadyExist.propTypes = {
     toggleUserExist: PropTypes.func.isRequired

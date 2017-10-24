@@ -9,6 +9,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongoose = require('mongoose');
 var ProfileRoutes = require('./Routes/ProfileRoutes');
+var limits = require('limits');
 var backEndConfig = require('../Config/BackEndConfig');
 var hostname = backEndConfig.serverURL;
 
@@ -17,11 +18,11 @@ var port = backEndConfig.serverPort;
 var app = express();
 
 app.use(morgan('dev'));
-
+app.use(limits(backEndConfig.limitsConfig));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(cookieParser());
+//app.use(cookieParser());
 
 
 app.use(passport.initialize());

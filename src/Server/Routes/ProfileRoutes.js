@@ -1,57 +1,76 @@
 var express = require('express')
 var router = express.Router()
-var userAccount = require('../../database/Models/userAccount');
+var UserAccount = require('../../database/Models/userAccount');
 var UserProfile = require('../../database/Models/UserProfile');
 var Verify = require('./Verify');
 var jwt = require('jsonwebtoken');
 
-router.put('/ProfileData',Verify.verifyOrdinaryUser,function(req,res,next) {
+router.post('/ProfileData',Verify.verifyOrdinaryUser,function(req,res,next) {
     
-    console.log(req.body);
-    const message = JSON.parse(req.body);
+    const message = req.body;
     
     const token = req.headers['x-access-token'];
     const decodedUser = jwt.decode(token, {complete: true});
 
-    UserProfile.findById(decodedUser._id , function(err,userProfile){
+    UserAccount.findById(decodedUser.payload._id , function(err,userAccount){
         if (err){
-            res.sendStatus(500).
+            //some error with database
+            res.status(500).
             json({status: 'Failed to update user profile'});
+            return
+        }
+        if (!userAccount){
+            // user doesn't exist yet
+            res.status(500).
+            json({status: 'User doesn\'t exist'});
+            return
         }
 
-        userProfile.mySex = message.mySex;
-        userProfile.myInterests = message.myInterests;
-        userProfile.ImTeaching = message.ImTeaching;
-        userProfile.aboutMe = message.aboutMe;
-        userProfile.mySchools = message.mySchools;
-        userProfile.myCountry = message.myCountry;
-        userProfile.gradesITeach = message.gradesITeach;
-        console.log(userProfile)
-        userProfile.save(function(err){
-            console.log(err);
-            next(err);
-        });
-    })
-
+        UserProfile.findOne({userID:userAccount._id},function (err,userProfile){
+            if (err){
+                //some error with database
+                res.status(500).
+                json({status: 'Failed to update user profile'});
+                return
+            }
+            if (!userProfile){
+                let userProfile = new UserProfile;
+            }
+            userProfile.userID = userAccount._id;
+            userProfile.mySex = message.mySex;
+            userProfile.interests = message.interests;
+            userProfile.ImTeaching = message.ImTeaching;
+            userProfile.aboutMe = message.aboutMe;
+            userProfile.mySchools = message.mySchools;
+            userProfile.myCountry = message.myCountry;
+            userProfile.gradesITeach = message.gradesITeach;
+            console.log(userProfile);
     
-    
+            userProfile.save(function(error){
+                console.log(error);
+                next(error);
+            });
+        })
 
-    res.sendStatus(200).
+    })  
+    res.status(200).
     json({status: 'User profile saved'});
 
 });
 
 router.get('/ProfileData',Verify.verifyOrdinaryUser,function(req,res,next){
     const token = req.headers['x-access-token'];
-    const decodedUser = jwt.decode(token, {complete: true});
-    UserProfile.findById(decodedUser._id , function(err,userProfile){
+    const decodedAccount = jwt.decode(token, {complete: true});
+    
+    UserProfile.findOne({userID : decodedAccount.payload._id} , function(err,userProfile){
         if (err){
-            res.sendStatus(500).
+            res.status(500).
             json({status: 'Failed to get user profile'});
+            return
         }
         //send the user to the client
-        res.sendStatus(200).
-        json({userProfile: JSON.stringify(userProfile)});
+        res.status(200).
+        json({userProfile: userProfile});
     })
 });
 

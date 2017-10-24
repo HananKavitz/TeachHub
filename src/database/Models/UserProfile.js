@@ -14,7 +14,7 @@ var userProfile = new Schema({
 	myCountry :{type: String,required:true},
 	gradesITeach : [String]
 
-	
+
 
 	},
 	{

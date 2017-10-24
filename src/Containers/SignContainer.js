@@ -26,13 +26,13 @@ class SignContainer extends Component {
         // we are sending secret password here!!! not good
         axios.post('/register',type.formData)
             .then(function (res) {
-                console.log(res);
                 this.setState({isRegistered : true});
 
             }.bind(this))
             .catch(function (error) {
                 console.error(error);
                 this.setState({userAlreadyExist : true})
+                this.props.router.push('/Login');// go to Login page
             }.bind(this));
 
     }

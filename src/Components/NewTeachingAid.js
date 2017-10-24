@@ -1,18 +1,79 @@
 import React, {Component} from 'react';
 import UnderConstruction from './UnderConstruction';
 import Form from "react-jsonschema-form";
+import { WithContext as ReactTags } from 'react-tag-input';
+
+
 
 export default class NewTeachingAid extends Component {
+    constructor(props){
+        super(props);
+        
+        this.state = {tags : []};
+        
+
+        //mothods bindings
+        this.handleDelete = this.handleDelete.bind(this);
+        this.handleAddition = this.handleAddition.bind(this);
+        this.handleDrag = this.handleDrag.bind(this);
+    }
+
+    
+    handleDelete(i) {
+        let tags = this.state.tags;
+        tags.splice(i, 1);
+        this.setState({tags: tags});
+    }
+
+    handleAddition(tag) {
+        let tags = this.state.tags;
+        tags.push({
+            id: tags.length + 1,
+            text: tag
+        });
+        this.setState({tags: tags});
+    }
+
+    handleDrag(tag, currPos, newPos) {
+        let tags = this.state.tags;
+
+        // mutate array
+        tags.splice(currPos, 1);
+        tags.splice(newPos, 0, tag);
+
+        // re-render
+        this.setState({ tags: tags });
+    }
     render() {
 
         const newTeachinAidiUiSchema = {
-            "title": {
-                "ui:widget": "password"
+            "tags": {
+                "ui:widget": (props) => {
+                    return (<ReactTags tags = {this.state.tags}
+                                handleDelete={this.handleDelete}
+                                handleAddition={this.handleAddition}
+                                className = {{
+                                            tags : 'ReactTags__tags',
+                                            tagInput: 'tagInputClass',
+                                            selected: 'ReactTags__selected',
+                                            remove: 'ReactTags__remove',                
+                                            }}/>
+                            )
+                }
+            },
+            description : {
+                "ui:widget" : "textarea"
+            },
+            forGrades:{
+                "ui:options" : {
+                    addable : true,
+                    removable : true
+                }
             }
         };
 
         const newTeachinAidSchema = {
-            title: "Log in",
+            title: "",
             type: "object",
             required: ["title"],
             properties: {
@@ -26,16 +87,31 @@ export default class NewTeachingAid extends Component {
                     title: "Subject",
                     default: ""
                 },
-                forgotPassword: {
-                    type: "string",
-                    title: "Description",
-                    default: ""
+                description: {
+                    type : "string",
+                    title : "Description"
+                },
+                files: {
+                    type: "array",
+                    title: "Share your teaching aid",
+                    items: {
+                      type: "string",
+                      format: "data-url"
+                    }
                 },
                 tags: {
                     type: "string",
                     title: "Tags"
+                },
+                language : {
+                    type : "string",
+                    title : "Language"
+                },
+                forGrades : {
+                    type : "array",
+                    title : "Suitable for grades",
+                    items : {type : "string"}
                 }
-
             }
         };
         return (
@@ -47,7 +123,7 @@ export default class NewTeachingAid extends Component {
                         <Form
                             schema={newTeachinAidSchema}
                             uiSchema={newTeachinAidiUiSchema}
-                            onSubmit={this.props.loginCallback}
+                            onSubmit={this.props.createNewteachingAid}
                             onError={this.props.onErrorSubmit}>
                         </Form>
                         <UnderConstruction/>
@@ -56,4 +132,6 @@ export default class NewTeachingAid extends Component {
             </div>
         );
     }
+
+   
 }
