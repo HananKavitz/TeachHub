@@ -16,12 +16,13 @@ export default class Header extends Component {
       return (
         <div className='container' style={mystyle}>
               <div className="row row-content col-xs-2" >
-                 <img src="./static/images/icon1.png" alt="logo" style={{"width":"120px","height":"120px","padding-top":"20px"}}/>
+                 <img src="./static/images/icon1.png" alt="logo" style={{"width":"120px","height":"120px","paddingTop":"20px"}}/>
               </div>
               <div className="row row-content col-xs-9" >
-                 <p style={{"font-size":"80pt","color":"#2028e8"}}>Teach Aid
+                 <p style={{"fontSize":"50pt","color":"#2028e8","paddingTop":"20px"}}>TeachingMadEasy
 
-                 <span style={{"font-size":"20pt"}}> your teaching aid location</span></p>
+                 {/* <span style={{"fontSize":"20pt"}}> your teaching aid location</span> */}
+                 </p>
               </div>
 
 
