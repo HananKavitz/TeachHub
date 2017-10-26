@@ -5,8 +5,8 @@ module.exports = {
 		type: "object",
 		required: ["username","password","email"],
 		properties: {
-			username: {type: "string", username: "User name", default: ""},
-			email: {type: "string",format: "email",default: ""},
+			username: {type: "string",title: "User name", default: ""},
+			email: {type: "string",format: "email", title : "Email",default: ""},
 			password: {type: "string", title: "Password", default: "",minLength: 6}
 
 		}

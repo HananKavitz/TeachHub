@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import MyNav from './MyNav';
 import Footer from './Footer'
-import Header from './header'
+import Header from './Header'
 import ScrollToTop from 'react-scroll-up'
 
 

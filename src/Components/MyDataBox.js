@@ -3,10 +3,7 @@ import {Panel} from 'react-bootstrap';
 import {Link} from 'react-router';
 
 export default class MyDataBox extends Component {
-  constructor(props) {
-    super(props);
 
-  }
 
   render() {
 

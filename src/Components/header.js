@@ -9,7 +9,7 @@ export default class Header extends Component {
     var mystyle= {
       color:"lightblue",
       background: "rgb(106, 187, 227)",
-      height: "200px"
+      height: "180px"
       }
 
 
