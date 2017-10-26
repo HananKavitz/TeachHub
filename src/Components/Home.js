@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import MyDataBox from './MyDataBox';
-import UnderConstruction from './UnderConstruction';
 import {Button} from 'react-bootstrap';
 import {Link} from 'react-router';
 

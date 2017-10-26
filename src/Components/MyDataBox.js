@@ -1,34 +1,28 @@
-
 import React, {Component} from 'react';
 import {Panel} from 'react-bootstrap';
 import {Link} from 'react-router';
 
-
-
-
 export default class MyDataBox extends Component {
   constructor(props) {
-      super(props);
-    
+    super(props);
+
   }
 
   render() {
 
-
-      return (
-        <div>
-          <Panel header={this.props.mytitle} bsStyle="primary">
+    return (
+      <div>
+        <Panel header={this.props.mytitle} bsStyle="primary">
           <p>
-           {this.props.mycontent}
+            {this.props.mycontent}
 
           </p>
-          <Link to={this.props.href}> Read More...</Link>
-            </Panel >
-       </div>
+          <Link to={this.props.href}>
+            Read More...</Link>
+        </Panel >
+      </div>
 
-
-
-        )
-      }
+    )
+  }
 
 }
