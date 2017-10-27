@@ -18,19 +18,70 @@ router.post('/New',Verify.verifyOrdinaryUser,function(req,res,next){
         }
         //save teaching aid to server
         res.status(200).
-            json({success: 'Teaching Aid ' + teachingAid + ' is saved'});
+            json({success: 'Teaching Aid ' + teachingAid._id + ' is saved'});
     })
 });
 
 router.get('/TeachingAid/:TeachingAidID',function(req,res,next){
-    TeachingAidDB.findById(req.params.TeachingAidID,function(err,teachingAid){
+
+    
+    let requastedTeachingAidID = req.params.TeachingAidID;
+    TeachingAidDB.findById(requastedTeachingAidID,function(err,teachingAid){
         if (err){
             res.status(404).
-                json({status : 'Could\'nt find teaching aid ' + req.params.TeachingAidID})
+                json({status : 'Could\'nt find teaching aid ' + requastedTeachingAidID})
             return
         }
         res.status(200).
             json({teachingAid : teachingAid});
+    })
+});
+
+router.put('/TeachingAid/:TeachingAidID',Verify.verifyOrdinaryUser,function(req,res,next){
+    const token = req.headers['x-access-token'];
+    const decodedAccount = jwt.decode(token, {complete: true});
+    // need to verify the user has the credentials to update this speciic teaching aid
+
+
+    let requastedTeachingAidID = req.params.TeachingAidID;
+    TeachingAidDB.findById(requastedTeachingAidID,function(err,teachingAid){
+        if (err){
+            res.status(404).
+                json({status : 'Could\'nt find teaching aid ' + requastedTeachingAidID})
+            return
+        }
+
+        teachingAid.save(function(err){
+            console.log(err);
+            res.status(500).json({status : 'Failed updating teaching aid ' + requastedTeachingAidID})
+        })
+
+        res.status(200).
+            json({teachingAid : teachingAid});
+    })
+});
+
+router.delete('/TeachingAid/:TeachingAidID',Verify.verifyOrdinaryUser,function(req,res,next){
+    const token = req.headers['x-access-token'];
+    const decodedAccount = jwt.decode(token, {complete: true});
+    // need to verify the user has the credentials to delete this speciic teaching aid
+
+    
+    let requastedTeachingAidID = req.params.TeachingAidID;
+    TeachingAidDB.findById(requastedTeachingAidID,function(err,teachingAid){
+        if (err){
+            res.status(404).
+                json({status : 'Could\'nt find teaching aid ' + requastedTeachingAidID})
+            return
+        }
+
+        teachingAid.save(function(err){
+            console.log(err);
+            res.status(500).json({status : 'Failed deleting teaching aid ' + requastedTeachingAidID})
+        })
+
+        res.status(200).
+            json({status : 'Teaching aid ' + requastedTeachingAidID + 'is deleted'});
     })
 });
 
