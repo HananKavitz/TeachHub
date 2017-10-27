@@ -38,8 +38,7 @@ var myData = {
                       <MyDataBox mytitle = {myData.mytitle} mycontent = {myData.mycontent} href={myData.href}/>
 
                 </div>
-            </div>
-            <div className="row row-content">
+            
                 <div className="col-sm-6 col-xs-12">
 
                       <MyDataBox mytitle = {myData.mytitle} mycontent = {myData.mycontent} href={myData.href}/>
