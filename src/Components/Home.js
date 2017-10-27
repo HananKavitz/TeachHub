@@ -24,6 +24,7 @@ var myData = {
           <div className="row">
               <div className="col-md-4 offset-sm-8">
                   {newTeachingAidButton}
+                  <br/><br/>
               </div>
           </div>
 

@@ -4,7 +4,6 @@ import {Link} from 'react-router';
 
 export default class MyDataBox extends Component {
 
-
   render() {
 
     return (
@@ -15,7 +14,8 @@ export default class MyDataBox extends Component {
 
           </p>
           <Link to={this.props.href}>
-            Read More...</Link>
+            Read More...
+          </Link>
         </Panel >
       </div>
 

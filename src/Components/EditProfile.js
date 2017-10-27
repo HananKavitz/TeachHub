@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {Image, FormGroup, FormControl} from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import Form from "react-jsonschema-form";
 import ImageChooser from './ImageChooser';
