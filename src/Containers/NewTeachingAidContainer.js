@@ -21,7 +21,7 @@ export default class NewTeachingAidContainer extends Component {
 			headers : {'x-access-token': window.sessionStorage.getItem("authToken")}
         });
         
-        axiosObj.post('/teachingAids/New')
+        axiosObj.post('/TeachingAids/New')
         .then(function(res){
             console.log(res);
             
