@@ -6,7 +6,9 @@ export default class NewTeachingAidContainer extends Component {
     constructor(props){
         super(props);
         
-        this.state = {tags : []};
+        this.state = {tags : [],
+                    languages : []
+                    };
         
 
         //mothods bindings
@@ -14,7 +16,16 @@ export default class NewTeachingAidContainer extends Component {
         this.onErrorSubmit = this.onErrorSubmit.bind(this);
         
     }
-
+    componentDidMount() {
+        axios.get('/TeachingAids/languages').
+        then(function(res){
+            console.log(res);
+            this.setState({languages : res.data.languages});
+        }.bind(this))
+        .catch(function(err){
+            console.error(err);
+        })
+    }
     createNewteachingAid(form){
         const axiosObj = axios.create({
 			timeout : 1000,
@@ -39,7 +50,7 @@ export default class NewTeachingAidContainer extends Component {
 
     return (
         <NewTeachingAid onErrorSubmit = {this.onErrorSubmit}
-        onSubmit = {this.createNewteachingAid}  />
+        onSubmit = {this.createNewteachingAid}  languages = {this.state.languages}/>
     )
    }
 }
