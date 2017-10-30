@@ -19,7 +19,6 @@ export default class NewTeachingAidContainer extends Component {
     componentDidMount() {
         axios.get('/TeachingAids/languages').
         then(function(res){
-            console.log(res);
             this.setState({languages : res.data.languages});
         }.bind(this))
         .catch(function(err){
@@ -37,8 +36,8 @@ export default class NewTeachingAidContainer extends Component {
             console.log(res);
             
         }.bind(this))
-        .catch(function(error){
-
+        .catch(function(err){
+            console.error(err);
         });
     }
     
