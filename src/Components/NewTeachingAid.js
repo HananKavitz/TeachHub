@@ -64,7 +64,7 @@ export default class NewTeachingAid extends Component {
             description : {
                 "ui:widget" : "textarea"
             },
-            forGrades:{
+            forGrades : {
                 "ui:options" : {
                     addable : true,
                     removable : true
@@ -105,7 +105,9 @@ export default class NewTeachingAid extends Component {
                 },
                 language : {
                     type : "string",
-                    title : "Language"
+                    title : "Language",
+                    enum : this.props.languages,
+                    default : 'English'
                 },
                 forGrades : {
                     type : "array",

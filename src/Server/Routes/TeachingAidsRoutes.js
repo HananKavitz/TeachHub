@@ -4,7 +4,7 @@ var TeachingAidDB = require('../../database/Models/TeachingAid');
 var userAccount = require('../../database/Models/userAccount');
 var Verify = require('./Verify');
 var jwt = require('jsonwebtoken');
-
+var languages = require('../../database/Languages');
 
 router.post('/New',Verify.verifyOrdinaryUser,function(req,res,next){
     const token = req.headers['x-access-token'];
@@ -85,5 +85,12 @@ router.delete('/TeachingAid/:TeachingAidID',Verify.verifyOrdinaryUser,function(r
             json({status : 'Teaching aid ' + requastedTeachingAidID + 'is deleted'});
     })
 });
+
+router.get('/languages',function(req,res,next){
+    res.status(200).
+    json({
+        languages: languages.languages
+    })
+})
 
 module.exports = router;
