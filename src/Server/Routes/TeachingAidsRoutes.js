@@ -5,6 +5,7 @@ var userAccount = require('../../database/Models/userAccount');
 var Verify = require('./Verify');
 var jwt = require('jsonwebtoken');
 var languages = require('../../database/Languages');
+var grades = require('../../database/Grades');
 
 router.post('/New',Verify.verifyOrdinaryUser,function(req,res,next){
     const token = req.headers['x-access-token'];
@@ -90,6 +91,13 @@ router.get('/languages',function(req,res,next){
     res.status(200).
     json({
         languages: languages.languages
+    })
+})
+
+router.get('/grades',function(req,res,next){
+    res.status(200).
+    json({
+        grades: grades.grades
     })
 })
 
