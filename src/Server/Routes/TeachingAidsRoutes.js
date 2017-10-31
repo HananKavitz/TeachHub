@@ -52,7 +52,7 @@ router.put('/TeachingAid/:TeachingAidID',Verify.verifyOrdinaryUser,function(req,
         }
 
         teachingAid.save(function(err){
-            console.log(err);
+
             res.status(500).json({status : 'Failed updating teaching aid ' + requastedTeachingAidID})
         })
 
@@ -76,8 +76,9 @@ router.delete('/TeachingAid/:TeachingAidID',Verify.verifyOrdinaryUser,function(r
         }
 
         teachingAid.save(function(err){
-            console.log(err);
-            res.status(500).json({status : 'Failed deleting teaching aid ' + requastedTeachingAidID})
+
+            res.status(500).
+                json({status : 'Failed deleting teaching aid ' + requastedTeachingAidID})
         })
 
         res.status(200).
