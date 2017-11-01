@@ -18,31 +18,16 @@ export default class EditProfileContainer extends Component {
 			timeout : 1000,
 			headers : {'x-access-token': window.sessionStorage.getItem("authToken")}
 		});
-        axiosObj.get('/interests')
+        axiosObj.get('/User/ProfileData')
             .then(function (response) {
-                this.setState({interests:  response.data});
+                console.log(response.data.userProfile)
+                this.setState({formData:  response.data});
             }.bind(this))
             .catch(function (error) {
                 console.log(error);
             });
 
-        axiosObj.get('/ImTeaching')
-            .then(function (response) {
-                this.setState({ImTeaching:  response.data});
-            }.bind(this))
-            .catch(function (error) {
-                console.log(error);
-            });
-
-        axiosObj.get('/UserData')
-            .then(function(res){
-                this.setState({
-                    formData : this.getFormData()
-                })
-            }.bind(this))
-            .catch(function(error){
-
-            });
+       
 
     }
 

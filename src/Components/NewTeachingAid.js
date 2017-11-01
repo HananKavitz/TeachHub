@@ -75,7 +75,7 @@ export default class NewTeachingAid extends Component {
         const newTeachinAidSchema = {
             title: "",
             type: "object",
-            required: ["title"],
+            required: ["title","subject"],
             properties: {
                 title: {
                     type: "string",
@@ -87,11 +87,15 @@ export default class NewTeachingAid extends Component {
                     title: "Subject",
                     default: ""
                 },
-                description: {
+                tags: {
+                    type: "string",
+                    title: "Tags"
+                },
+                description : {
                     type : "string",
                     title : "Description"
                 },
-                files: {
+                files : {
                     type: "array",
                     title: "Share your teaching aid",
                     items: {
@@ -99,23 +103,24 @@ export default class NewTeachingAid extends Component {
                       format: "data-url"
                     }
                 },
-                tags: {
-                    type: "string",
-                    title: "Tags"
-                },
                 language : {
                     type : "string",
                     title : "Language",
                     enum : this.props.languages,
-                    default : 'English'
+                    default : 'English',
+                    uniqueItems : true
                 },
                 forGrades : {
                     type : "array",
                     title : "Suitable for grades",
-                    items : {type : "string"}
+                    items : {type : "string",
+                            enum : this.props.forGrades,
+                            default : this.props.forGrades[0],
+                            uniqueItems : true}
                 }
             }
         };
+
         return (
             <div className="container">
 
