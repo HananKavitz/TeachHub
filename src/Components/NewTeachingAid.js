@@ -9,8 +9,6 @@ export default class NewTeachingAid extends Component {
     constructor(props){
         super(props);
         
-        this.state = {tags : []};
-        
 
         //mothods bindings
         this.handleDelete = this.handleDelete.bind(this);
@@ -20,22 +18,26 @@ export default class NewTeachingAid extends Component {
 
     
     handleDelete(i) {
-        let tags = this.state.tags;
+        let tags = this.props.tags;
         tags.splice(i, 1);
         this.setState({tags: tags});
     }
 
     handleAddition(tag) {
-        let tags = this.state.tags;
+        let tags = Object.assign({},this.props.tags);
+        console.log(tags);
         tags.push({
             id: tags.length + 1,
             text: tag
         });
-        this.setState({tags: tags});
+
+        this
+    .props
+    .setTages({tags: tags});
     }
 
     handleDrag(tag, currPos, newPos) {
-        let tags = this.state.tags;
+        let tags = this.props.tags;
 
         // mutate array
         tags.splice(currPos, 1);
@@ -49,7 +51,7 @@ export default class NewTeachingAid extends Component {
         const newTeachinAidiUiSchema = {
             "tags": {
                 "ui:widget": (props) => {
-                    return (<ReactTags tags = {this.state.tags}
+                    return (<ReactTags tags = {this.props.tags}
                                 handleDelete={this.handleDelete}
                                 handleAddition={this.handleAddition}
                                 className = {{
@@ -130,7 +132,7 @@ export default class NewTeachingAid extends Component {
                         <Form
                             schema={newTeachinAidSchema}
                             uiSchema={newTeachinAidiUiSchema}
-                            onSubmit={this.props.createNewteachingAid}
+                            onSubmit={this.props.onSubmit}
                             onError={this.props.onErrorSubmit}>
                         </Form>
                         <UnderConstruction/>

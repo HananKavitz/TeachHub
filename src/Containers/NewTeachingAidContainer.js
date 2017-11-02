@@ -15,7 +15,7 @@ export default class NewTeachingAidContainer extends Component {
         //mothods bindings
         this.createNewteachingAid = this.createNewteachingAid.bind(this);
         this.onErrorSubmit = this.onErrorSubmit.bind(this);
-        
+        this.setTags = this.setTags.bind(this);
     }
     componentDidMount() {
         axios.get('/TeachingAids/languages')
@@ -35,12 +35,12 @@ export default class NewTeachingAidContainer extends Component {
         })
     }
     createNewteachingAid(form){
+        console.log(form)
         const axiosObj = axios.create({
 			timeout : 1000,
 			headers : {'x-access-token': window.sessionStorage.getItem("authToken")}
         });
-        
-        axiosObj.post('/TeachingAids/New')
+        axiosObj.post('/TeachingAids/New',form.formData)
         .then(function(res){
             console.log(res);
             
@@ -54,11 +54,16 @@ export default class NewTeachingAidContainer extends Component {
         console.error(err);
     }
 
+    setTags(tags){
+        this.setState({tags:tags});
+    }
+    
    render(){
 
     return (
         <NewTeachingAid onErrorSubmit = {this.onErrorSubmit}
-        onSubmit = {this.createNewteachingAid}  languages = {this.state.languages} forGrades = {this.state.forGrades}/>
+        onSubmit = {this.createNewteachingAid}  languages = {this.state.languages} forGrades = {this.state.forGrades}
+        setTages = {this.setTags} tages = {this.state.tags}/>
     )
    }
 }

@@ -29,11 +29,12 @@ export default class MyNav extends Component {
         const registerOrEditProfile = this.props.isLogedIn ?  editPorfileLink : registerLink;
 
         let eventKey = 0;
+        const navStyle = {padding : '6px', paddingTop : '15px'};
         return (
+            
+            <div className='container' style={{padding:'0px'}}>
 
-            <div className='container'>
-
-                <div className="row row-content col-xs-12" style={{"padding":"0px"}}>
+                <div className="row row-content col-xs-12" style={{padding:'0px',margin:'0px'}}>
 
                     <Navbar collapseOnSelect style={{"margin":"0px"}}>
                         <Navbar.Header>
@@ -44,46 +45,46 @@ export default class MyNav extends Component {
                         </Navbar.Header>
                         <Navbar.Collapse>
                             <Nav>
-                                <NavItem eventKey={eventKey}>
+                                <NavItem eventKey={eventKey} componentClass = {'span'}  style = {navStyle}>
                                     <Link to={'Home'}><span className="glyphicon glyphicon-home " aria-hidden="true"/>
                                     </Link>
                                 </NavItem>
-                                <NavItem eventKey={eventKey++}>
+                                <NavItem eventKey={eventKey++} componentClass = {'span'} style = {navStyle}>
                                     <Link to={'Teachers'}>
                                         Teachers
                                     </Link>
                                 </NavItem>
-                                <NavItem eventKey={eventKey++}>
+                                <NavItem eventKey={eventKey++} componentClass = {'span'} style = {navStyle}>
                                     <Link to={'LoadTeachingAids'}>
                                         Teaching Aids
                                     </Link>
                                 </NavItem>
 
-                                <NavItem eventKey={eventKey++}>
+                                <NavItem eventKey={eventKey++} componentClass = {'span'} style = {navStyle}>
                                     <Link to={'About'}>
                                         About
                                     </Link>
                                 </NavItem>
 
-                                <NavItem eventKey={eventKey++}>
+                                <NavItem eventKey={eventKey++} componentClass = {'span'} style = {navStyle}>
                                     <Link to={'Contact'}>
                                         Contact
                                     </Link>
                                 </NavItem>
                             </Nav>
                             <Nav pullRight>
-                                <NavItem eventKey={eventKey++}>
-                                    <span className="glyphicon glyphicon-search text-primary" style={{"color":"lightblue"}}
+                                <NavItem eventKey={eventKey++} style = {{padding: '0px'}}>
+                                    <span className="glyphicon glyphicon-search text-primary" style={{color:"lightblue"}}
                                         aria-hidden="true" onClick = {(searchObj,e)=> console.log("search button clicked")}>
                                         <input type="text" placeholder="Search" id="search" />
                                     </span>
                                 </NavItem>
-                                <NavItem eventKey={eventKey++}>
+                                <NavItem eventKey={eventKey++} componentClass = {'span'} style = {navStyle}>
 
                                     {registerOrEditProfile}
                                 </NavItem>
 
-                                <NavItem eventKey={eventKey++}>
+                                <NavItem eventKey={eventKey++} componentClass = {'span'} style = {navStyle}>
                                     {log}
 
                                 </NavItem>
