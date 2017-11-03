@@ -34,8 +34,9 @@ export default class NewTeachingAidContainer extends Component {
             console.error(err);
         })
     }
+    
     createNewteachingAid(form){
-        console.log(form)
+        form.formData.tags = this.state.tags;// add tags to form
         const axiosObj = axios.create({
 			timeout : 1000,
 			headers : {'x-access-token': window.sessionStorage.getItem("authToken")}

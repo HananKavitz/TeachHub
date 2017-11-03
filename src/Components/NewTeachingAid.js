@@ -42,6 +42,14 @@ export default class NewTeachingAid extends Component {
     //     // re-render
     //     this.setState({ tags: tags });
     // }
+    shouldComponentUpdate(nextProps,nextState){
+        //we need this otherwise adding a new tag re renders all other fields
+        // and empties the other fields in form
+        return ((this.props.tags      != nextProps.tags) ||
+                 this.props.languages != nextProps.languages ||
+                 this.props.forGrades != nextProps.forGrades)
+    }
+
     render() {
 
         const newTeachinAidiUiSchema = {
@@ -73,7 +81,7 @@ export default class NewTeachingAid extends Component {
         const newTeachinAidSchema = {
             title: "",
             type: "object",
-            required: ["title","subject"],
+            required: ["title","subject","language"],
             properties: {
                 title: {
                     type: "string",
