@@ -29,13 +29,13 @@ export default class Logout extends Component {
 
 					<Modal.Footer>
 						<Link to={'Home'}>
-							<Button bsStyle="primary" onClick = {this.closeCallback}>
+							<Button bsStyle="primary" onClick = {this.closeCallback} style = {{margin : '3px'}}>
 								Log out
 							</Button>
 						</Link>
 
 						<Link to={'Home'}>
-							<Button data-dismiss="modal">
+							<Button data-dismiss="modal" style = {{margin : '3px'}}>
 								Cancel
 							</Button>
 						</Link>

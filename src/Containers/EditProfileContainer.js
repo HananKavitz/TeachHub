@@ -21,29 +21,14 @@ export default class EditProfileContainer extends Component {
         axiosObj.get('/User/ProfileData')
             .then(function (response) {
                 console.log(response.data.userProfile)
-                this.setState({formData:  response.data});
+                this.setState({formData:  response.data.userProfile});
             }.bind(this))
             .catch(function (error) {
                 console.log(error);
             });
-
-       
-
     }
 
-    getFormData(){
-        return {
-            myImage : "./static/images/P1000623.JPG",
-            mySex : "Man",
-            interests : ["Math"],
-            ImTeaching : ["Bible"],
-            aboutMe : "nothing special",
-            mySchools : ["Jeffersons first"],
-            myCountry : "US",
-            gradesITeach :["1st Grade"]
-
-         }
-     }
+    
     fileChooserCallback(evt){
         let input = document.getElementById('myPrettyFace');
         // need to save image to database here
@@ -60,9 +45,9 @@ export default class EditProfileContainer extends Component {
 			headers : {'x-access-token': window.sessionStorage.getItem("authToken")}
         });
 
-        axiosObj.put('/User/ProfileData',JSON.stringify(dataForm))
+        axiosObj.put('/User/ProfileData',dataForm)
         .then(function(res){
-            //this.setState({formData : res.body.profileData});
+            this.props.router.push('/Home');// go to Home page
         })
         .catch(function (error) {
             console.log(error);

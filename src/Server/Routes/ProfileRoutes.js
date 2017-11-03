@@ -5,7 +5,7 @@ var UserProfile = require('../../database/Models/UserProfile');
 var Verify = require('./Verify');
 var jwt = require('jsonwebtoken');
 
-router.post('/ProfileData',Verify.verifyOrdinaryUser,function(req,res,next) {
+router.put('/ProfileData',Verify.verifyOrdinaryUser,function(req,res,next) {
     
     const message = req.body;
     
@@ -50,11 +50,12 @@ router.post('/ProfileData',Verify.verifyOrdinaryUser,function(req,res,next) {
                 console.log(error);
                 next(error);
             });
+            // res.status(200).
+            // json({status: 'User profile saved'});
         })
 
     })  
-    res.status(200).
-    json({status: 'User profile saved'});
+    
 
 });
 
@@ -73,5 +74,10 @@ router.get('/ProfileData',Verify.verifyOrdinaryUser,function(req,res,next){
         json({userProfile: userProfile});
     })
 });
+
+
+function updateUserProfile(userProfile,userAccountID){
+    
+}
 
 module.exports = router;
