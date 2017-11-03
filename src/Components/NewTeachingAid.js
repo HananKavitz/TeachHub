@@ -13,39 +13,35 @@ export default class NewTeachingAid extends Component {
         //mothods bindings
         this.handleDelete = this.handleDelete.bind(this);
         this.handleAddition = this.handleAddition.bind(this);
-        this.handleDrag = this.handleDrag.bind(this);
+        //this.handleDrag = this.handleDrag.bind(this);
     }
 
     
     handleDelete(i) {
         let tags = this.props.tags;
         tags.splice(i, 1);
-        this.setState({tags: tags});
+        this.props.setTags(tags);
     }
 
     handleAddition(tag) {
-        let tags = Object.assign({},this.props.tags);
-        console.log(tags);
+        let tags = this.props.tags;
         tags.push({
             id: tags.length + 1,
             text: tag
         });
-
-        this
-    .props
-    .setTages({tags: tags});
+        this.props.setTags(tags);
     }
 
-    handleDrag(tag, currPos, newPos) {
-        let tags = this.props.tags;
+    // handleDrag(tag, currPos, newPos) {
+    //     let tags = this.props.tags;
 
-        // mutate array
-        tags.splice(currPos, 1);
-        tags.splice(newPos, 0, tag);
+    //     // mutate array
+    //     tags.splice(currPos, 1);
+    //     tags.splice(newPos, 0, tag);
 
-        // re-render
-        this.setState({ tags: tags });
-    }
+    //     // re-render
+    //     this.setState({ tags: tags });
+    // }
     render() {
 
         const newTeachinAidiUiSchema = {

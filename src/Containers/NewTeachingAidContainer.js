@@ -63,7 +63,7 @@ export default class NewTeachingAidContainer extends Component {
     return (
         <NewTeachingAid onErrorSubmit = {this.onErrorSubmit}
         onSubmit = {this.createNewteachingAid}  languages = {this.state.languages} forGrades = {this.state.forGrades}
-        setTages = {this.setTags} tages = {this.state.tags}/>
+        setTags = {this.setTags} tags = {this.state.tags}/>
     )
    }
 }
