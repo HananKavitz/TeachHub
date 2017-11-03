@@ -48,7 +48,7 @@ export default class EditProfileContainer extends Component {
         axiosObj.put('/User/ProfileData',dataForm)
         .then(function(res){
             this.props.router.push('/Home');// go to Home page
-        })
+        }.bind(this))
         .catch(function (error) {
             console.log(error);
             if (error.status === 500){
