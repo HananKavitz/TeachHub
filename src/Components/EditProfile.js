@@ -19,7 +19,13 @@ export default class EditProfile extends Component {
                 aboutMe : {type: "string" , title: "About me"},
                 mySchools : {type: "array" , title: "Schools I'm teaching in" , items : {type : "string"}},
                 myCountry : {type: "string" , title: "My country"},
-                gradesITeach : {type: "array" ,title: "Grades I teach" , items : {type : "string"}}
+                gradesITeach : {type: "array" ,title: "Grades I teach" , 
+                    items : {type : "string",
+                            enum : this.props.gradesITeach,
+                            default : this.props.gradesITeach[0],
+                            uniqueItems : true
+                        }
+                    }
             }
         }
 
@@ -59,7 +65,10 @@ export default class EditProfile extends Component {
                 "ui:widget": "text"
             },
             gradesITeach:{
-                "ui:widget": "textarea"
+                "ui:options" : {
+                    addable : true,
+                    removable : true
+                }
             }
     
         }

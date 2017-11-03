@@ -6,7 +6,8 @@ export default class EditProfileContainer extends Component {
     constructor(props){
         super(props);
         this.state = {
-            formData: {}
+            formData: {},
+            gradesITeach :{}
         };
 
         this.fileChooserCallback = this.fileChooserCallback.bind(this);
@@ -19,13 +20,20 @@ export default class EditProfileContainer extends Component {
 			headers : {'x-access-token': window.sessionStorage.getItem("authToken")}
 		});
         axiosObj.get('/User/ProfileData')
-            .then(function (response) {
-                console.log(response.data.userProfile)
-                this.setState({formData:  response.data.userProfile});
+            .then(function (res) {
+
+                this.setState({formData:  res.data.userProfile});
             }.bind(this))
             .catch(function (error) {
-                console.log(error);
+                console.error(error);
             });
+        axios.get('/TeachingAids/grades')
+            .then(function(res){
+                this.setState({gradesITeach : res.data.grades})
+            }.bind(this))
+            .catch(function(error){
+                console.error(error);
+            })
     }
 
     
@@ -64,7 +72,7 @@ export default class EditProfileContainer extends Component {
     render(){
         return (
             <EditProfile fileChooserCallback = {this.fileChooserCallback} onErrorSubmit = {this.onErrorSubmit}
-                formData = {this.state.formData} sendFormToServer = {this.sendFormToServer} />
+                formData = {this.state.formData} sendFormToServer = {this.sendFormToServer} gradesITeach = {this.state.gradesITeach}/>
         );
     }
 }
