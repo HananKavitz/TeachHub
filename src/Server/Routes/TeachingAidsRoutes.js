@@ -8,18 +8,30 @@ var languages = require('../../database/Languages');
 var grades = require('../../database/Grades');
 
 router.post('/New',Verify.verifyOrdinaryUser,function(req,res,next){
+    const message = req.body;
+
     const token = req.headers['x-access-token'];
     const decodedAccount = jwt.decode(token, {complete: true});
     
-    TeachingAidDB.save({userID : decodedAccount.payload._id} , function(err,teachingAid){
+    var teachingAid = new TeachingAidDB;
+    teachingAid.creator = decodedAccount.payload._id;
+    teachingAid.editors = decodedAccount.payload._id;
+    teachingAid.subject = message.subject;
+    teachingAid.title   = message.title;
+    teachingAid.description = message.description;
+    teachingAid.likes   = 0;
+    teachingAid.rating  = 0;
+    teachingAid.tags    = message.tags;
+    teachingAid.language  = message.language;
+    teachingAid.forGrades = message.forGrade;
+    
+    teachingAid.save(function(err){
         if (err){
             res.status(500).
-                json({status: 'Failed to get user profile'});
-            return
+                json({status: 'Failed to save teaching aid for user ' +  decodedAccount.payload._id});
+            
         }
-        //save teaching aid to server
-        res.status(200).
-            json({success: 'Teaching Aid ' + teachingAid._id + ' is saved'});
+       
     })
 });
 
@@ -39,19 +51,32 @@ router.get('/TeachingAid/:TeachingAidID',function(req,res,next){
 });
 
 router.put('/TeachingAid/:TeachingAidID',Verify.verifyOrdinaryUser,function(req,res,next){
+    const message = req.body;
+
     const token = req.headers['x-access-token'];
     const decodedAccount = jwt.decode(token, {complete: true});
     // need to verify the user has the credentials to update this speciic teaching aid
-
+    
 
     let requastedTeachingAidID = req.params.TeachingAidID;
+
     TeachingAidDB.findById(requastedTeachingAidID,function(err,teachingAid){
         if (err){
             res.status(404).
                 json({status : 'Could\'nt find teaching aid ' + requastedTeachingAidID})
             return
         }
-
+        
+        // need to verify the user has the credentials to update this speciic teaching aid
+        const ind = teachingAid.editors.indexOf(decodedAccount.payload._id);
+        if (!ind){
+            res.status(403).
+                json('You are not allowed to edit teaching aid ' + requastedTeachingAidID);
+            return
+        }
+        
+        // the user is autorized to save 
+        
         teachingAid.save(function(err){
 
             res.status(500).json({status : 'Failed updating teaching aid ' + requastedTeachingAidID})
@@ -65,8 +90,7 @@ router.put('/TeachingAid/:TeachingAidID',Verify.verifyOrdinaryUser,function(req,
 router.delete('/TeachingAid/:TeachingAidID',Verify.verifyOrdinaryUser,function(req,res,next){
     const token = req.headers['x-access-token'];
     const decodedAccount = jwt.decode(token, {complete: true});
-    // need to verify the user has the credentials to delete this speciic teaching aid
-
+   
     
     let requastedTeachingAidID = req.params.TeachingAidID;
     TeachingAidDB.findById(requastedTeachingAidID,function(err,teachingAid){
@@ -75,8 +99,15 @@ router.delete('/TeachingAid/:TeachingAidID',Verify.verifyOrdinaryUser,function(r
                 json({status : 'Could\'nt find teaching aid ' + requastedTeachingAidID})
             return
         }
+        // need to verify the user has the credentials to update this speciic teaching aid
+        const ind = teachingAid.editors.indexOf(decodedAccount.payload._id);
+        if (!ind){
+            res.status(403).
+                json('You are not allowed to delete teaching aid ' + requastedTeachingAidID);
+            return
+        }
 
-        teachingAid.save(function(err){
+        teachingAid.remove(function(err){
 
             res.status(500).
                 json({status : 'Failed deleting teaching aid ' + requastedTeachingAidID})

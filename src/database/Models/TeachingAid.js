@@ -14,10 +14,10 @@ var teachingAid = new Schema({
 	}],
 	creator : {type : Schema.Types.ObjectId,
 				required:true,
-				ref : 'UserProfile'
+				ref : 'userAccount'
 	},
 	editors : [{type : Schema.Types.ObjectId,
-				ref : 'UserProfile'
+				ref : 'userAccount'
 	}],
 	tags : [String],
 	language : String,

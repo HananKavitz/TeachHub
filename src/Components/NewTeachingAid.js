@@ -45,7 +45,7 @@ export default class NewTeachingAid extends Component {
     shouldComponentUpdate(nextProps,nextState){
         //we need this otherwise adding a new tag re renders all other fields
         // and empties the other fields in form
-        return ((this.props.tags      != nextProps.tags) ||
+        return (this.props.tags       != nextProps.tags ||
                  this.props.languages != nextProps.languages ||
                  this.props.forGrades != nextProps.forGrades)
     }
@@ -53,7 +53,7 @@ export default class NewTeachingAid extends Component {
     render() {
 
         const newTeachinAidiUiSchema = {
-            "tags": {
+            tags: {
                 "ui:widget": (props) => {
                     return (<ReactTags tags = {this.props.tags}
                                 handleDelete={this.handleDelete}
