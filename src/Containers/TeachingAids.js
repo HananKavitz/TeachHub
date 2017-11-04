@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 //import TeachingAidsComponent from '../Components/TeachingAids';
+import NewTeachingAidButton from '../Components/NewTeachingAidButton';
 
 class TeachingAids extends Component {
 
@@ -13,7 +14,7 @@ class TeachingAids extends Component {
     render() {
         return (
             <div className="container">
-
+                <NewTeachingAidButton isLogedIn = {this.props.isLogedIn}/>
                 <div className="row row-content">
                     <div className="col-xs-12">
                         <h2>

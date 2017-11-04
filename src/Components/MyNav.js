@@ -55,7 +55,7 @@ export default class MyNav extends Component {
                                     </Link>
                                 </NavItem>
                                 <NavItem eventKey={eventKey++} componentClass = {'span'} style = {navStyle}>
-                                    <Link to={'LoadTeachingAids'}>
+                                    <Link to={'TeachingAids'}>
                                         Teaching Aids
                                     </Link>
                                 </NavItem>
