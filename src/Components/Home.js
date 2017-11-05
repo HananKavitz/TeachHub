@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import MyDataBox from './MyDataBox';
-import {Button} from 'react-bootstrap';
-import {Link} from 'react-router';
 import NewTeachingAidButton from './NewTeachingAidButton';
 
 export default class Home extends Component {

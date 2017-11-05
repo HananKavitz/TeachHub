@@ -45,9 +45,9 @@ export default class NewTeachingAid extends Component {
     shouldComponentUpdate(nextProps,nextState){
         //we need this otherwise adding a new tag re renders all other fields
         // and empties the other fields in form
-        return (this.props.tags       != nextProps.tags ||
-                 this.props.languages != nextProps.languages ||
-                 this.props.forGrades != nextProps.forGrades)
+        return (this.props.tags       !== nextProps.tags ||
+                 this.props.languages !== nextProps.languages ||
+                 this.props.forGrades !== nextProps.forGrades)
     }
 
     render() {
