@@ -56,7 +56,7 @@ router.put('/ProfileData',Verify.verifyOrdinaryUser,function(req,res,next) {
           
         var upload = multer({ storage: storage }).single('profileImage');
         
-        upload(req,re,function(err){
+        upload(req,res,function(err){
             if (err){
                 res.status(500).
                 json({message : 'Failed saving avatar image'});
