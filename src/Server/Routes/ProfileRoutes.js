@@ -4,6 +4,9 @@ var UserAccount = require('../../database/Models/userAccount');
 var UserProfile = require('../../database/Models/UserProfile');
 var Verify = require('./Verify');
 var jwt = require('jsonwebtoken');
+var multer = require('multer');
+var fs = require('fs');
+
 
 router.put('/ProfileData',Verify.verifyOrdinaryUser,function(req,res,next) {
     
@@ -11,8 +14,8 @@ router.put('/ProfileData',Verify.verifyOrdinaryUser,function(req,res,next) {
     
     const token = req.headers['x-access-token'];
     const decodedUser = jwt.decode(token, {complete: true});
-
-    UserProfile.findOne({userID:decodedUser.payload._id},function (err,userProfile){
+    const userAccountID = decodedUser.payload._id;
+    UserProfile.findOne({userID:userAccountID},function (err,userProfile){
         if (err){
             //some error with database
             res.status(500).
@@ -20,7 +23,7 @@ router.put('/ProfileData',Verify.verifyOrdinaryUser,function(req,res,next) {
             return
         }
         
-        userProfile.userID = decodedUser.payload._id;
+        userProfile.userID = userAccountID;
         userProfile.mySex = message.mySex;
         userProfile.interests = message.interests;
         userProfile.ImTeaching = message.ImTeaching;
@@ -35,6 +38,33 @@ router.put('/ProfileData',Verify.verifyOrdinaryUser,function(req,res,next) {
             next(error);
         });
         
+        const path = '/database/' + userAccountID;
+        fs.mkdir(path,function(err){
+            if (err){
+                // maybe dir exist
+            }
+        });
+
+        var storage = multer.diskStorage({
+            destination: function (req, file, cb) {
+              cb(null, path)
+            },
+            filename: function (req, file, cb) {
+              cb(null, file.fieldname)
+            }
+          })
+          
+        var upload = multer({ storage: storage }).single('profileImage');
+        
+        upload(req,re,function(err){
+            if (err){
+                res.status(500).
+                json({message : 'Failed saving avatar image'});
+                return
+            }
+            res.status(200).
+            json({message : 'Saved avatar image'});
+        })
     })
 
 
