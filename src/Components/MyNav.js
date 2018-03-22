@@ -29,14 +29,14 @@ export default class MyNav extends Component {
         const registerOrEditProfile = this.props.isLogedIn ?  editPorfileLink : registerLink;
 
         let eventKey = 0;
-        const navStyle = {padding : '6px', paddingTop : '15px'};
+        const navStyle = {padding: '6px', paddingTop: '15px'};
         return (
             
-            <div className='container' style={{padding:'0px'}}>
+            <div className='container' style={{padding: '0px'}}>
 
-                <div className="row row-content col-xs-12" style={{padding:'0px',margin:'0px'}}>
+                <div className='row row-content col-xs-12' style={{padding: '0px',margin: '0px'}}>
 
-                    <Navbar collapseOnSelect style={{"margin":"0px"}}>
+                    <Navbar collapseOnSelect style={{margin: '0px'}}>
                         <Navbar.Header>
                             <Navbar.Brand>
                                 <Link to={'home'}></Link>

@@ -19,7 +19,7 @@ export default class Header extends Component {
                  <img src="./static/images/icon1.png" alt="logo" style={{"width":"120px","height":"120px","paddingTop":"20px"}}/>
               </div>
               <div className="row row-content col-xs-9" >
-                 <p style={{"fontSize":"50pt","color":"#2028e8","paddingTop":"20px"}}>TeachingMadEasy
+                 <p style={{fontSize: "50pt", color: "#2028e8" , paddingTop: "20px"}}>TeachingMadEasy
 
                  {/* <span style={{"fontSize":"20pt"}}> your teaching aid location</span> */}
                  </p>
