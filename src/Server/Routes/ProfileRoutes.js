@@ -37,6 +37,33 @@ router.put('/ProfileData' , Verify.verifyOrdinaryUser , function(req,res,next) {
             next(error);
         });
         
+        const path = '/database/' + userAccountID;
+        fs.mkdir(path,function(err){
+            if (err){
+                // maybe dir exist
+            }
+        });
+
+        var storage = multer.diskStorage({
+            destination: function (req, file, cb) {
+              cb(null, path)
+            },
+            filename: function (req, file, cb) {
+              cb(null, file.fieldname)
+            }
+          })
+          
+        var upload = multer({ storage: storage }).single('profileImage');
+        
+        upload(req,res,function(err){
+            if (err){
+                res.status(500).
+                json({message : 'Failed saving avatar image'});
+                return
+            }
+            res.status(200).
+            json({message : 'Saved avatar image'});
+        })
     })
 
     // save avatar image
