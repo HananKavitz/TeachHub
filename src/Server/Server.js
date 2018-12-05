@@ -3,6 +3,7 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var path = require('path');
 //var fs = require('fs');
+var favicon = require('serve-favicon');
 var router = require('./Routes/Routes');
 var cookieParser = require('cookie-parser');
 var passport = require('passport');
@@ -17,8 +18,11 @@ var hostname = backEndConfig.serverURL;
 var port = backEndConfig.serverPort;
 
 var app = express();
-
+// favicon
+app.use(favicon(__dirname + '/../../public/static/images/icon1.png'));
+// logeer
 app.use(morgan('dev'));
+// limit request size
 app.use(limits(backEndConfig.limitsConfig));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
