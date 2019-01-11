@@ -5,15 +5,15 @@ import PropTypes from 'prop-types';
 const ImageChooser = (props) => {
     return (
         <div>
-        <Image id ="myPrettyFace" src= {props.imagePath} responsive/>
-        <FormGroup id="formControlsFile">
-            <br/>
-            <FormControl type="file" accept=".jpg, .jpeg, .png"
-                        id="image_uploads"
-                        onChange = {props.fileChooserCallback}/>
-        </FormGroup>
+            <Image id ="myPrettyFace" src= {props.imagePath} responsive/>
+            <FormGroup id="formControlsFile">
+                <br/>
+                <FormControl type="file" accept=".jpg, .jpeg, .png"
+                            id="image_uploads"
+                            onChange = {props.fileChooserCallback}/>
+            </FormGroup>
 
-    </div>)
+        </div>)
     
 }
 
